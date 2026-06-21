@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: viatech-real-store
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: VIATECH_DATA_DIR
+        value: /var/data
+    disk:
+      name: viatech-data
+      mountPath: /var/data
+      sizeGB: 1

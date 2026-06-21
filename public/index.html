@@ -1,0 +1,3858 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViaTech - Loja de Eletrônicos e Tecnologia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --bg: #01090d;
+        --bg-2: #041216;
+        --panel: #061014;
+        --panel-2: #081a20;
+        --line: #17333b;
+        --text: #f8fbfb;
+        --muted: #92a5aa;
+        --soft: #c5d3d6;
+        --teal: #00c7c7;
+        --teal-2: #59e0dc;
+        --orange: #f97316;
+        --yellow: #facc15;
+        --green: #12e985;
+        --red: #ff5f63;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.42);
+        --glow: 0 0 25px rgba(0, 199, 199, 0.24), 0 0 80px rgba(0, 199, 199, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 10% 18%, rgba(0, 199, 199, 0.12), transparent 34%),
+          radial-gradient(circle at 82% 16%, rgba(249, 115, 22, 0.16), transparent 30%),
+          var(--bg);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0;
+      }
+
+      body.admin-screen {
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(1216px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        border-bottom: 1px solid rgba(23, 51, 59, 0.82);
+        background: rgba(1, 9, 13, 0.82);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-shell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 900;
+        font-size: 1.17rem;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(0, 199, 199, 0.58);
+        border-radius: 8px;
+        background: rgba(0, 199, 199, 0.1);
+        color: var(--teal-2);
+        box-shadow: var(--glow);
+      }
+
+      .brand strong {
+        color: var(--teal);
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .nav-links {
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 650;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .icon-btn {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--text);
+        transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+      }
+
+      .icon-btn:hover {
+        background: rgba(248, 251, 251, 0.06);
+        color: var(--teal-2);
+        transform: translateY(-1px);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: 3px;
+        right: 2px;
+        display: grid;
+        place-items: center;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 99px;
+        background: var(--orange);
+        color: #01090d;
+        font-size: 0.68rem;
+        font-weight: 900;
+      }
+
+      .btn,
+      .primary-btn,
+      .secondary-btn,
+      .ghost-btn,
+      .danger-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 8px;
+        font-weight: 850;
+        white-space: nowrap;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      }
+
+      .primary-btn {
+        background: var(--teal);
+        color: #021013;
+        box-shadow: var(--glow);
+      }
+
+      .secondary-btn {
+        background: var(--orange);
+        color: #120702;
+        box-shadow: 0 0 25px rgba(249, 115, 22, 0.23);
+      }
+
+      .ghost-btn {
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        background: rgba(6, 16, 20, 0.68);
+        color: var(--text);
+      }
+
+      .danger-btn {
+        border: 1px solid rgba(255, 95, 99, 0.36);
+        background: rgba(255, 95, 99, 0.1);
+        color: #ff777a;
+      }
+
+      .primary-btn:hover,
+      .secondary-btn:hover,
+      .ghost-btn:hover,
+      .danger-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .store-view {
+        display: block;
+      }
+
+      body.admin-screen .store-view,
+      body.admin-screen .site-header {
+        display: none;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: calc(100vh - 154px);
+        display: grid;
+        align-items: center;
+        padding: 64px 0 32px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(90deg, rgba(1, 9, 13, 0.98), rgba(1, 9, 13, 0.72) 56%, rgba(1, 9, 13, 0.28)),
+          url("https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=2200&q=85") center right/cover;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+        align-items: center;
+        gap: 48px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        margin-bottom: 18px;
+        padding: 7px 12px;
+        border: 1px solid rgba(0, 199, 199, 0.28);
+        border-radius: 999px;
+        background: rgba(0, 199, 199, 0.08);
+        color: var(--teal-2);
+        font-size: 0.86rem;
+        font-weight: 850;
+      }
+
+      h1 {
+        margin: 0 0 22px;
+        max-width: 790px;
+        font-size: clamp(3.8rem, 7.4vw, 6.8rem);
+        line-height: 0.9;
+        font-weight: 900;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        margin: 0 0 30px;
+        color: var(--muted);
+        font-size: 1.13rem;
+        line-height: 1.72;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 42px;
+      }
+
+      .trust-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 770px;
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 76px;
+        padding: 16px;
+        border: 1px solid rgba(23, 51, 59, 0.86);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.66);
+        backdrop-filter: blur(10px);
+      }
+
+      .trust-item i {
+        display: grid;
+        flex: 0 0 36px;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(0, 199, 199, 0.1);
+        color: var(--teal-2);
+      }
+
+      .trust-item strong,
+      .mini-card strong {
+        display: block;
+        color: var(--text);
+        font-size: 0.94rem;
+      }
+
+      .trust-item span,
+      .mini-card span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .hero-showcase {
+        display: grid;
+        align-content: center;
+        gap: 16px;
+      }
+
+      .featured-device {
+        position: relative;
+        overflow: hidden;
+        min-height: 360px;
+        border: 1px solid rgba(0, 199, 199, 0.22);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .featured-device img {
+        width: 100%;
+        height: 100%;
+        min-height: 360px;
+        object-fit: cover;
+      }
+
+      .featured-device::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(1, 9, 13, 0.9), transparent 62%);
+      }
+
+      .featured-label {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 1;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .featured-label p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .featured-label h2 {
+        margin: 3px 0 0;
+        font-size: 1.4rem;
+      }
+
+      .price-pill {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--teal);
+        color: #01090d;
+        font-size: 0.9rem;
+        font-weight: 900;
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .mini-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 92px;
+        padding: 12px;
+        border: 1px solid rgba(23, 51, 59, 0.86);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.76);
+      }
+
+      .mini-card img {
+        width: 70px;
+        height: 68px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .section-band {
+        border-top: 1px solid rgba(23, 51, 59, 0.78);
+        border-bottom: 1px solid rgba(23, 51, 59, 0.78);
+        background: rgba(6, 16, 20, 0.56);
+        backdrop-filter: blur(12px);
+      }
+
+      .ticker {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .ticker-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 90px;
+        padding: 18px;
+        border-right: 1px solid rgba(23, 51, 59, 0.72);
+        color: var(--muted);
+      }
+
+      .ticker-item:last-child {
+        border-right: 0;
+      }
+
+      .ticker-item strong {
+        display: block;
+        color: var(--text);
+        font-size: 0.98rem;
+      }
+
+      .ticker-item svg {
+        color: var(--teal-2);
+      }
+
+      .catalog {
+        padding: 78px 0 92px;
+        background: rgba(1, 9, 13, 0.88);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 28px;
+      }
+
+      .section-title {
+        margin: 0 0 10px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      .section-subtitle {
+        max-width: 640px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .filters {
+        display: grid;
+        grid-template-columns: minmax(240px, 1fr) 190px 190px;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .field {
+        position: relative;
+      }
+
+      .field svg {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        color: var(--muted);
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .field input,
+      .field select,
+      .field textarea,
+      .admin-form input,
+      .admin-form select,
+      .admin-form textarea,
+      .admin-input {
+        width: 100%;
+        min-height: 46px;
+        padding: 0 14px;
+        border: 1px solid rgba(23, 51, 59, 0.95);
+        border-radius: 8px;
+        outline: 0;
+        background: rgba(2, 13, 16, 0.86);
+        color: var(--text);
+      }
+
+      .field input {
+        padding-left: 42px;
+      }
+
+      textarea.admin-input,
+      .admin-form textarea {
+        min-height: 86px;
+        padding: 11px 14px;
+        resize: vertical;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .admin-form input:focus,
+      .admin-form select:focus,
+      .admin-form textarea:focus,
+      .admin-input:focus {
+        border-color: rgba(0, 199, 199, 0.72);
+        box-shadow: 0 0 0 3px rgba(0, 199, 199, 0.12);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .product-card {
+        overflow: hidden;
+        border: 1px solid rgba(23, 51, 59, 0.9);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.92);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        border-color: rgba(0, 199, 199, 0.54);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+        transform: translateY(-4px);
+      }
+
+      .product-media {
+        position: relative;
+        aspect-ratio: 1.22;
+        background: var(--panel-2);
+      }
+
+      .product-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .tag,
+      .discount,
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 900;
+      }
+
+      .tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 6px 9px;
+        background: rgba(1, 9, 13, 0.76);
+        color: var(--teal-2);
+        backdrop-filter: blur(10px);
+      }
+
+      .discount {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 6px 9px;
+        background: var(--orange);
+        color: #120702;
+      }
+
+      .product-body {
+        padding: 18px;
+      }
+
+      .product-body h3 {
+        margin: 0 0 8px;
+        font-size: 1.08rem;
+      }
+
+      .product-body p {
+        min-height: 44px;
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .price strong {
+        color: var(--text);
+        font-size: 1.24rem;
+      }
+
+      .price del {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #ffca5f;
+        font-size: 0.82rem;
+        font-weight: 850;
+      }
+
+      .add-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 42px;
+        border-radius: 8px;
+        background: var(--teal);
+        color: #01090d;
+        font-weight: 900;
+      }
+
+      .promo {
+        position: relative;
+        overflow: hidden;
+        padding: 76px 0;
+        background:
+          linear-gradient(90deg, rgba(1, 9, 13, 0.94), rgba(1, 9, 13, 0.76)),
+          url("https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=2200&q=85") center/cover;
+      }
+
+      .promo-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+      }
+
+      .promo h2 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1;
+      }
+
+      .promo p {
+        max-width: 660px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .cart-panel {
+        position: fixed;
+        inset: 0 0 0 auto;
+        z-index: 70;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: min(430px, 100%);
+        border-left: 1px solid rgba(23, 51, 59, 0.96);
+        background: rgba(1, 9, 13, 0.98);
+        box-shadow: -28px 0 80px rgba(0, 0, 0, 0.48);
+        transform: translateX(104%);
+        transition: transform 0.22s ease;
+      }
+
+      .cart-panel.open {
+        transform: translateX(0);
+      }
+
+      .cart-head,
+      .cart-foot {
+        padding: 20px;
+        border-bottom: 1px solid rgba(23, 51, 59, 0.96);
+      }
+
+      .cart-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .cart-head h2 {
+        margin: 0;
+        font-size: 1.28rem;
+      }
+
+      .cart-items {
+        overflow: auto;
+        padding: 18px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 68px 1fr auto;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(23, 51, 59, 0.72);
+      }
+
+      .cart-item img {
+        width: 68px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .cart-item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .cart-item span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .qty {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 850;
+      }
+
+      .qty button {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: rgba(248, 251, 251, 0.08);
+        color: var(--text);
+      }
+
+      .empty-state {
+        display: grid;
+        place-items: center;
+        min-height: 220px;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      .cart-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        font-size: 1.06rem;
+        font-weight: 900;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: none;
+        place-items: center;
+        padding: 18px;
+        background: rgba(1, 9, 13, 0.76);
+        backdrop-filter: blur(12px);
+      }
+
+      .modal-backdrop.open {
+        display: grid;
+      }
+
+      .modal-card {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        width: min(560px, 100%);
+        max-height: min(92vh, 740px);
+        overflow: hidden;
+        border: 1px solid rgba(0, 199, 199, 0.28);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.98);
+        box-shadow: var(--shadow), var(--glow);
+      }
+
+      .modal-card.wide {
+        width: min(900px, 100%);
+      }
+
+      .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 20px;
+        border-bottom: 1px solid rgba(23, 51, 59, 0.9);
+      }
+
+      .modal-head h2 {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+
+      .modal-body {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+        min-height: 0;
+        overflow: auto;
+        padding: 20px;
+      }
+
+      .modal-body p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .modal-body label,
+      .admin-form label,
+      .setting-card label {
+        display: grid;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 800;
+      }
+
+      .order-summary {
+        display: grid;
+        gap: 8px;
+        min-height: 118px;
+        max-height: 180px;
+        overflow: auto;
+        padding: 12px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(2, 13, 16, 0.7);
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.5;
+      }
+
+      .order-summary strong {
+        color: var(--text);
+      }
+
+      .freight-box {
+        display: grid;
+        gap: 10px;
+        padding: 12px;
+        border: 1px solid rgba(0, 199, 199, 0.26);
+        border-radius: 8px;
+        background: rgba(0, 199, 199, 0.055);
+      }
+
+      .freight-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .freight-head strong {
+        color: var(--text);
+      }
+
+      .freight-head span,
+      .freight-status {
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .freight-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .freight-option {
+        display: grid;
+        gap: 4px;
+        min-height: 86px;
+        padding: 12px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(1, 9, 13, 0.68);
+        color: var(--text);
+        text-align: left;
+      }
+
+      .freight-option.active {
+        border-color: rgba(0, 199, 199, 0.78);
+        box-shadow: var(--glow);
+      }
+
+      .freight-option small {
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .product-detail-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.9fr) 1.1fr;
+        gap: 18px;
+      }
+
+      .product-detail-media img {
+        width: 100%;
+        aspect-ratio: 1 / 0.88;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+      }
+
+      .product-detail-copy {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+      }
+
+      .spec-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .spec-item {
+        padding: 10px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(1, 9, 13, 0.62);
+      }
+
+      .spec-item span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+
+      .spec-item strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--text);
+      }
+
+      .reviews-box {
+        display: grid;
+        gap: 12px;
+        margin-top: 6px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(23, 51, 59, 0.82);
+      }
+
+      .review-card {
+        padding: 11px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(1, 9, 13, 0.6);
+      }
+
+      .review-card header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+
+      .review-card p {
+        margin: 0;
+      }
+
+      .toast {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 120;
+        max-width: min(380px, calc(100% - 40px));
+        padding: 14px 16px;
+        border: 1px solid rgba(0, 199, 199, 0.4);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.98);
+        color: var(--text);
+        box-shadow: var(--glow);
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .site-footer {
+        border-top: 1px solid rgba(23, 51, 59, 0.78);
+        background: rgba(1, 9, 13, 0.72);
+        backdrop-filter: blur(12px);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr;
+        gap: 38px;
+        padding: 48px 0;
+      }
+
+      .site-footer p,
+      .site-footer a {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .site-footer h3 {
+        margin: 0 0 14px;
+        font-size: 1rem;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 8px;
+      }
+
+      .copyright {
+        padding: 18px 0 24px;
+        border-top: 1px solid rgba(23, 51, 59, 0.72);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .admin-view {
+        display: none;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 0 22%, rgba(0, 199, 199, 0.18), transparent 32%),
+          radial-gradient(circle at 95% 10%, rgba(249, 115, 22, 0.24), transparent 36%),
+          #01090d;
+      }
+
+      body.admin-screen .admin-view {
+        display: block;
+      }
+
+      .admin-login {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+      }
+
+      .login-card {
+        width: min(420px, 100%);
+        padding: 28px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(6, 16, 20, 0.94);
+        box-shadow: var(--shadow), var(--glow);
+      }
+
+      .login-card h1 {
+        margin: 16px 0 8px;
+        font-size: 2rem;
+        line-height: 1.1;
+      }
+
+      .login-card p {
+        margin: 0 0 22px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .login-card form {
+        display: grid;
+        gap: 12px;
+      }
+
+      .admin-app {
+        min-height: 100vh;
+        padding: 42px;
+      }
+
+      .admin-titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin: 0 auto 30px;
+        width: min(1180px, 100%);
+      }
+
+      .admin-titlebar h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1;
+      }
+
+      .admin-layout {
+        display: grid;
+        grid-template-columns: 224px minmax(0, 1fr);
+        gap: 32px;
+        width: min(1180px, 100%);
+        margin: 0 auto;
+      }
+
+      .admin-sidebar {
+        align-self: start;
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 16px;
+        background: rgba(2, 13, 16, 0.78);
+      }
+
+      .admin-nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 38px;
+        padding: 0 12px;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        text-align: left;
+        font-weight: 700;
+      }
+
+      .admin-nav-btn.active {
+        background: rgba(0, 199, 199, 0.16);
+        color: var(--teal);
+      }
+
+      .admin-content {
+        min-width: 0;
+      }
+
+      .admin-panel {
+        display: none;
+      }
+
+      .admin-panel.active {
+        display: block;
+      }
+
+      .admin-panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .admin-panel-head h2 {
+        margin: 0;
+        font-size: 1.45rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .stat-card,
+      .admin-list-card,
+      .setting-card {
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 16px;
+        background: rgba(6, 16, 20, 0.74);
+      }
+
+      .stat-card {
+        min-height: 86px;
+        padding: 18px;
+      }
+
+      .stat-card span {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .stat-card strong {
+        font-size: 1.6rem;
+        color: var(--teal);
+      }
+
+      .stat-card.orange strong {
+        color: var(--orange);
+      }
+
+      .stat-card.green strong {
+        color: var(--green);
+      }
+
+      .stat-card.yellow strong {
+        color: var(--yellow);
+      }
+
+      .admin-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .admin-row-card {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: center;
+        min-height: 82px;
+        padding: 12px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 16px;
+        background: rgba(6, 16, 20, 0.74);
+      }
+
+      .admin-thumb {
+        display: grid;
+        place-items: center;
+        width: 72px;
+        height: 72px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: rgba(248, 251, 251, 0.05);
+        color: var(--muted);
+      }
+
+      .admin-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .admin-row-card h3 {
+        margin: 0 0 4px;
+        font-size: 1rem;
+      }
+
+      .admin-row-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.45;
+      }
+
+      .row-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .row-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .mini-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-width: 36px;
+        min-height: 36px;
+        padding: 0 10px;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(248, 251, 251, 0.05);
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 800;
+      }
+
+      .mini-action:hover {
+        color: var(--text);
+        border-color: rgba(0, 199, 199, 0.42);
+      }
+
+      .mini-action.danger {
+        color: var(--red);
+      }
+
+      .admin-quick-actions {
+        margin-top: 16px;
+      }
+
+      .image-editor {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .image-preview {
+        display: grid;
+        place-items: center;
+        width: 150px;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 8px;
+        background: rgba(248, 251, 251, 0.05);
+        color: var(--muted);
+      }
+
+      .image-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .category-card,
+      .order-card,
+      .setting-card {
+        padding: 16px;
+      }
+
+      .category-card h3,
+      .order-card h3,
+      .setting-card h3 {
+        margin: 0 0 8px;
+      }
+
+      .category-card p,
+      .setting-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .order-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .order-card {
+        border: 1px solid rgba(23, 51, 59, 0.96);
+        border-radius: 16px;
+        background: rgba(6, 16, 20, 0.74);
+      }
+
+      .order-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 12px;
+      }
+
+      .order-code {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 900;
+      }
+
+      .status-pill {
+        padding: 5px 9px;
+        background: rgba(250, 204, 21, 0.12);
+        color: var(--yellow);
+      }
+
+      .status-pill.confirmado {
+        background: rgba(0, 199, 199, 0.12);
+        color: var(--teal-2);
+      }
+
+      .status-pill.enviado,
+      .status-pill.entregue {
+        background: rgba(18, 233, 133, 0.12);
+        color: var(--green);
+      }
+
+      .status-pill.cancelado {
+        background: rgba(255, 95, 99, 0.12);
+        color: var(--red);
+      }
+
+      .order-grid {
+        display: grid;
+        grid-template-columns: 1fr 170px;
+        gap: 12px;
+      }
+
+      .order-grid p {
+        margin: 0 0 8px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .order-items {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(23, 51, 59, 0.82);
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .admin-form {
+        display: grid;
+        gap: 12px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .check-row {
+        display: grid !important;
+        grid-template-columns: 18px 1fr;
+        align-items: center;
+        gap: 9px !important;
+        color: var(--text) !important;
+      }
+
+      .check-row input {
+        min-height: 18px;
+        accent-color: var(--teal);
+      }
+
+      .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .site-lock-note {
+        margin-top: 10px;
+        padding: 12px;
+        border: 1px solid rgba(250, 204, 21, 0.24);
+        border-radius: 8px;
+        background: rgba(250, 204, 21, 0.07);
+        color: #f8d86a;
+        line-height: 1.5;
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-grid,
+        .footer-grid,
+        .promo-box,
+        .admin-layout,
+        .settings-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-grid,
+        .stats-grid,
+        .category-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .filters {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .field:first-child {
+          grid-column: 1 / -1;
+        }
+
+        .ticker {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .ticker-item:nth-child(2) {
+          border-right: 0;
+        }
+
+        .trust-row {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-app {
+          padding: 30px 20px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(100% - 28px, 1216px);
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          padding: 42px 0 22px;
+        }
+
+        h1 {
+          font-size: clamp(3rem, 18vw, 4.6rem);
+        }
+
+        .hero-copy {
+          font-size: 1rem;
+        }
+
+        .hero-actions,
+        .admin-panel-head,
+        .admin-titlebar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .primary-btn,
+        .secondary-btn,
+        .ghost-btn,
+        .danger-btn {
+          width: 100%;
+        }
+
+        .hero-showcase {
+          display: none;
+        }
+
+        .product-grid,
+        .filters,
+        .ticker,
+        .stats-grid,
+        .category-grid,
+        .product-detail-grid,
+        .image-editor,
+        .form-grid,
+        .freight-options {
+          grid-template-columns: 1fr;
+        }
+
+        .image-preview {
+          width: 100%;
+          max-width: 260px;
+        }
+
+        .field:first-child {
+          grid-column: auto;
+        }
+
+        .ticker-item {
+          justify-content: flex-start;
+          border-right: 0;
+          border-bottom: 1px solid rgba(23, 51, 59, 0.72);
+        }
+
+        .ticker-item:last-child {
+          border-bottom: 0;
+        }
+
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .promo {
+          padding: 56px 0;
+        }
+
+        .admin-row-card {
+          grid-template-columns: 62px minmax(0, 1fr);
+        }
+
+        .row-actions {
+          grid-column: 1 / -1;
+          justify-content: flex-start;
+        }
+
+        .admin-thumb {
+          width: 62px;
+          height: 62px;
+        }
+
+        .order-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="#top" aria-label="ViaTech">
+          <span class="brand-mark"><i data-lucide="zap"></i></span>
+          <span>Via<strong>Tech</strong></span>
+        </a>
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#produtos">Produtos</a>
+          <a href="#ofertas">Ofertas</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="icon-btn" href="#produtos" aria-label="Buscar produtos" title="Buscar produtos"><i data-lucide="search"></i></a>
+          <button class="icon-btn" id="openCart" type="button" aria-label="Abrir carrinho" title="Carrinho">
+            <i data-lucide="shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+          <button class="ghost-btn" id="customerAction" type="button"><i data-lucide="user"></i> Entrar</button>
+          <button class="ghost-btn" id="goAdmin" type="button"><i data-lucide="lock-keyhole"></i> Admin</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="store-view" id="storeView">
+      <main id="top">
+        <section class="hero">
+          <div class="container hero-grid">
+            <div>
+              <div class="eyebrow"><i data-lucide="sparkles"></i> Tecnologia ao seu alcance</div>
+              <h1>ViaTech</h1>
+              <p class="hero-copy">Eletrônicos, acessórios e gadgets selecionados com visual premium, compra simples e ofertas prontas para destacar sua loja online.</p>
+              <div class="hero-actions">
+                <a class="primary-btn" href="#produtos"><i data-lucide="monitor-smartphone"></i> Explorar produtos</a>
+                <a class="ghost-btn" href="#ofertas"><i data-lucide="badge-percent"></i> Ver ofertas</a>
+              </div>
+              <div class="trust-row">
+                <div class="trust-item"><i data-lucide="truck"></i><div><strong>Frete grátis</strong><span>Acima de R$ 299</span></div></div>
+                <div class="trust-item"><i data-lucide="shield-check"></i><div><strong>Compra segura</strong><span>Pedido pelo WhatsApp</span></div></div>
+                <div class="trust-item"><i data-lucide="badge-check"></i><div><strong>Qualidade</strong><span>Produtos selecionados</span></div></div>
+              </div>
+            </div>
+            <div class="hero-showcase">
+              <article class="featured-device">
+                <img id="featuredImage" src="" alt="Produto em destaque" />
+                <div class="featured-label">
+                  <div>
+                    <p>Destaque da semana</p>
+                    <h2 id="featuredName">Fone Bluetooth Pro X</h2>
+                  </div>
+                  <span class="price-pill" id="featuredPrice">R$ 249,90</span>
+                </div>
+              </article>
+              <div class="mini-grid" id="miniHighlights"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-band">
+          <div class="container ticker">
+            <div class="ticker-item"><i data-lucide="zap"></i><div><strong>Envio rápido</strong><span>Separação em até 24h</span></div></div>
+            <div class="ticker-item"><i data-lucide="credit-card"></i><div><strong>Pagamento</strong><span>Combinado no WhatsApp</span></div></div>
+            <div class="ticker-item"><i data-lucide="headphones"></i><div><strong>Suporte</strong><span>Atendimento humanizado</span></div></div>
+            <div class="ticker-item"><i data-lucide="refresh-cw"></i><div><strong>Troca fácil</strong><span>Garantia clara</span></div></div>
+          </div>
+        </section>
+
+        <section class="catalog" id="produtos">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Produtos em destaque</h2>
+                <p class="section-subtitle">Vitrine ligada ao painel administrativo: cadastre produtos, controle estoque, descontos e categorias.</p>
+              </div>
+              <a class="secondary-btn" href="#ofertas"><i data-lucide="flame"></i> Promoções</a>
+            </div>
+            <div class="filters">
+              <label class="field">
+                <i data-lucide="search"></i>
+                <input id="searchInput" type="search" placeholder="Nome do produto..." />
+              </label>
+              <label class="field">
+                <select id="categorySelect" aria-label="Categoria"></select>
+              </label>
+              <label class="field">
+                <select id="sortSelect" aria-label="Ordenação">
+                  <option value="recentes">Mais recentes</option>
+                  <option value="menor">Menor preço</option>
+                  <option value="maior">Maior preço</option>
+                  <option value="avaliados">Melhor avaliação</option>
+                </select>
+              </label>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+          </div>
+        </section>
+
+        <section class="promo" id="ofertas">
+          <div class="container promo-box">
+            <div>
+              <h2>Não perca nossas ofertas</h2>
+              <p>Receba promoções, combos de acessórios e novidades de eletrônicos direto no WhatsApp.</p>
+            </div>
+            <button class="secondary-btn" id="notifyBtn" type="button"><i data-lucide="send"></i> Receber ofertas</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="contato">
+        <div class="container footer-grid">
+          <div>
+            <a class="brand" href="#top"><span class="brand-mark"><i data-lucide="zap"></i></span><span>Via<strong>Tech</strong></span></a>
+            <p>Sua loja online de eletrônicos, tecnologia e acessórios com os melhores preços.</p>
+          </div>
+          <div>
+            <h3>Navegação</h3>
+            <div class="footer-links">
+              <a href="#produtos">Produtos</a>
+              <button class="ghost-btn" id="footerCart" type="button" style="width: fit-content">Carrinho</button>
+              <button class="ghost-btn" id="footerCustomer" type="button" style="width: fit-content">Minha conta</button>
+              <button class="ghost-btn" id="footerAdmin" type="button" style="width: fit-content">Admin</button>
+            </div>
+          </div>
+          <div>
+            <h3>Contato</h3>
+            <p id="footerContact">Configure o WhatsApp no painel admin.<br />Segunda a Sexta, 9h - 18h</p>
+          </div>
+        </div>
+        <div class="container copyright">© 2026 ViaTech. Todos os direitos reservados.</div>
+      </footer>
+    </div>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Carrinho de compras">
+      <div class="cart-head">
+        <h2>Carrinho</h2>
+        <button class="icon-btn" id="closeCart" type="button" aria-label="Fechar carrinho" title="Fechar"><i data-lucide="x"></i></button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-foot">
+        <div class="cart-total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
+        <button class="primary-btn" id="checkoutBtn" type="button" style="width: 100%"><i data-lucide="send"></i> Finalizar pelo WhatsApp</button>
+      </div>
+    </aside>
+
+    <section class="admin-view" id="adminView">
+      <div class="admin-login" id="adminLogin">
+        <article class="login-card">
+          <a class="brand" href="#top" id="backToStoreFromLogin"><span class="brand-mark"><i data-lucide="zap"></i></span><span>Via<strong>Tech</strong></span></a>
+          <h1>Acesso administrativo</h1>
+          <p>Entre com seu usuário para gerenciar produtos, categorias, pedidos e configurações da loja.</p>
+          <form id="adminLoginForm">
+            <label>
+              Usuário
+              <input class="admin-input" name="user" type="text" autocomplete="username" required />
+            </label>
+            <label>
+              Senha
+              <input class="admin-input" name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button class="primary-btn" type="submit"><i data-lucide="log-in"></i> Entrar</button>
+            <button class="ghost-btn" id="backToStoreLoginBtn" type="button"><i data-lucide="arrow-left"></i> Voltar para loja</button>
+          </form>
+          <div class="site-lock-note">Nesta primeira edição o bloqueio é local. Para segurança real em produção, o próximo passo é backend com login e banco de dados.</div>
+        </article>
+      </div>
+
+      <div class="admin-app hidden" id="adminApp">
+        <div class="admin-titlebar">
+          <h1>Painel Administrativo</h1>
+          <div class="nav-actions">
+            <button class="ghost-btn" id="viewStoreBtn" type="button"><i data-lucide="store"></i> Ver loja</button>
+            <button class="danger-btn" id="logoutAdmin" type="button"><i data-lucide="log-out"></i> Sair</button>
+          </div>
+        </div>
+        <div class="admin-layout">
+          <aside class="admin-sidebar">
+            <button class="admin-nav-btn active" data-admin-tab="dashboard"><i data-lucide="bar-chart-3"></i> Dashboard</button>
+            <button class="admin-nav-btn" data-admin-tab="products"><i data-lucide="package"></i> Produtos</button>
+            <button class="admin-nav-btn" data-admin-tab="categories"><i data-lucide="folder-tree"></i> Categorias</button>
+            <button class="admin-nav-btn" data-admin-tab="orders"><i data-lucide="shopping-bag"></i> Pedidos</button>
+            <button class="admin-nav-btn" data-admin-tab="settings"><i data-lucide="settings"></i> Configurações</button>
+          </aside>
+
+          <main class="admin-content">
+            <section class="admin-panel active" id="admin-dashboard">
+              <div class="admin-panel-head"><h2>Dashboard</h2></div>
+              <div class="stats-grid" id="statsGrid"></div>
+              <div class="setting-card admin-form admin-quick-actions">
+                <h3>Ações rápidas</h3>
+                <p>Cadastre um produto novo ou vá para a lista para editar foto, preço, desconto e estoque.</p>
+                <div class="form-grid">
+                  <button class="primary-btn" id="dashboardNewProductBtn" type="button"><i data-lucide="plus"></i> Cadastrar produto</button>
+                  <button class="ghost-btn" id="dashboardProductsBtn" type="button"><i data-lucide="package"></i> Ver produtos</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="admin-panel" id="admin-products">
+              <div class="admin-panel-head">
+                <h2>Produtos</h2>
+                <button class="primary-btn" id="newProductBtn" type="button"><i data-lucide="plus"></i> Cadastrar produto</button>
+              </div>
+              <div class="admin-list" id="adminProductsList"></div>
+            </section>
+
+            <section class="admin-panel" id="admin-categories">
+              <div class="admin-panel-head">
+                <h2>Categorias</h2>
+                <button class="primary-btn" id="newCategoryBtn" type="button"><i data-lucide="plus"></i> Nova Categoria</button>
+              </div>
+              <div class="category-grid" id="adminCategoriesList"></div>
+            </section>
+
+            <section class="admin-panel" id="admin-orders">
+              <div class="admin-panel-head">
+                <h2>Pedidos</h2>
+                <select class="admin-input" id="orderFilter" style="max-width: 180px">
+                  <option value="todos">Todos</option>
+                  <option value="pendente">Pendentes</option>
+                  <option value="confirmado">Confirmados</option>
+                  <option value="enviado">Enviados</option>
+                  <option value="entregue">Entregues</option>
+                  <option value="cancelado">Cancelados</option>
+                </select>
+              </div>
+              <div class="order-list" id="adminOrdersList"></div>
+            </section>
+
+            <section class="admin-panel" id="admin-settings">
+              <div class="admin-panel-head"><h2>Configurações</h2></div>
+              <div class="settings-grid">
+                <form class="setting-card admin-form" id="storeSettingsForm">
+                  <h3>Loja e entrega</h3>
+                  <p>O cliente será direcionado para esse WhatsApp. O CEP de origem entra na simulação do frete.</p>
+                  <label>
+                    Número com DDI e DDD
+                    <input name="whatsapp" placeholder="5511999999999" inputmode="tel" />
+                  </label>
+                  <div class="form-grid">
+                    <label>
+                      CEP de origem da loja
+                      <input name="originCep" placeholder="14010-000" inputmode="numeric" />
+                    </label>
+                    <label>
+                      Frete grátis acima de
+                      <input name="freeShippingFrom" type="number" step="0.01" min="0" placeholder="0.00" />
+                    </label>
+                  </div>
+                  <label>
+                    Taxa de embalagem/manuseio
+                    <input name="handlingFee" type="number" step="0.01" min="0" placeholder="3.90" />
+                  </label>
+                  <button class="primary-btn" type="submit"><i data-lucide="save"></i> Salvar loja</button>
+                </form>
+                <form class="setting-card admin-form" id="adminCredentialsForm">
+                  <h3>Usuário admin</h3>
+                  <p>Controle local para esta primeira versão.</p>
+                  <label>
+                    Usuário
+                    <input name="adminUser" autocomplete="username" />
+                  </label>
+                  <label>
+                    Senha
+                    <input name="adminPass" type="password" autocomplete="new-password" />
+                  </label>
+                  <button class="primary-btn" type="submit"><i data-lucide="save"></i> Salvar acesso</button>
+                </form>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal-backdrop" id="orderModal" aria-hidden="true">
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+        <div class="modal-head">
+          <h2 id="orderTitle">Ficha do pedido</h2>
+          <button class="icon-btn" id="closeOrder" type="button" aria-label="Fechar pedido"><i data-lucide="x"></i></button>
+        </div>
+        <form class="modal-body" id="orderForm">
+          <p>Confira os itens e preencha os dados para enviar o pedido direto para o WhatsApp da loja.</p>
+          <div class="order-summary" id="orderSummary"></div>
+          <label>Nome do cliente<input class="admin-input" name="customerName" placeholder="Seu nome" required /></label>
+          <label>E-mail<input class="admin-input" name="customerEmail" type="email" placeholder="seuemail@exemplo.com" /></label>
+          <label>WhatsApp do cliente<input class="admin-input" name="customerPhone" inputmode="tel" placeholder="(11) 99999-9999" /></label>
+          <label>
+            Forma de entrega
+            <select class="admin-input" name="delivery">
+              <option value="Entrega">Entrega</option>
+              <option value="Retirada">Retirada</option>
+              <option value="Combinar pelo WhatsApp">Combinar pelo WhatsApp</option>
+            </select>
+          </label>
+          <div class="form-grid">
+            <label>CEP do cliente<input class="admin-input" name="cep" inputmode="numeric" placeholder="00000-000" /></label>
+            <label>Número<input class="admin-input" name="number" placeholder="123" /></label>
+          </div>
+          <label>Rua/Avenida<input class="admin-input" name="street" placeholder="Preenche pelo CEP" /></label>
+          <div class="form-grid">
+            <label>Bairro<input class="admin-input" name="neighborhood" placeholder="Preenche pelo CEP" /></label>
+            <label>Cidade<input class="admin-input" name="city" placeholder="Cidade do cliente" /></label>
+          </div>
+          <div class="form-grid">
+            <label>Estado<input class="admin-input" name="stateUf" placeholder="SP" maxlength="2" /></label>
+            <label>Complemento<input class="admin-input" name="complement" placeholder="Apto, bloco, referência" /></label>
+          </div>
+          <section class="freight-box" id="freightBox">
+            <div class="freight-head">
+              <strong>Frete da entrega</strong>
+              <span id="freightOrigin">Origem: Ribeirão Preto-SP</span>
+            </div>
+            <div class="freight-status" id="freightStatus">Digite o CEP do cliente para calcular entrega local ou Correios.</div>
+            <div class="freight-options" id="freightOptions"></div>
+            <input type="hidden" name="shippingService" />
+            <input type="hidden" name="shippingPrice" />
+            <input type="hidden" name="shippingDeadline" />
+          </section>
+          <label>Observações<textarea class="admin-input" name="notes" placeholder="Cor, voltagem, horário de entrega ou qualquer detalhe do pedido"></textarea></label>
+          <button class="primary-btn" type="submit" style="width: 100%"><i data-lucide="send"></i> Enviar pedido no WhatsApp</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="customerModal" aria-hidden="true">
+      <section class="modal-card wide" role="dialog" aria-modal="true" aria-labelledby="customerTitle">
+        <div class="modal-head">
+          <h2 id="customerTitle">Área do cliente</h2>
+          <button class="icon-btn" id="closeCustomerModal" type="button" aria-label="Fechar área do cliente"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal-body" id="customerGuest">
+          <p>Entre ou crie uma conta para salvar seus dados, preencher pedidos automaticamente e acompanhar compras feitas neste navegador.</p>
+          <form class="admin-form" id="customerLoginForm">
+            <div class="form-grid">
+              <label>E-mail<input name="email" class="admin-input" type="email" required /></label>
+              <label>Senha<input name="password" class="admin-input" type="password" required /></label>
+            </div>
+            <div class="form-grid">
+              <button class="primary-btn" type="submit" data-customer-action="login"><i data-lucide="log-in"></i> Entrar</button>
+              <button class="ghost-btn" type="submit" data-customer-action="register"><i data-lucide="user-plus"></i> Criar conta</button>
+            </div>
+          </form>
+          <div class="site-lock-note">Primeira versão: login salvo localmente no navegador. Em produção, isso vira login seguro com banco de dados.</div>
+        </div>
+        <div class="modal-body hidden" id="customerAccount">
+          <form class="admin-form" id="customerProfileForm">
+            <div class="form-grid">
+              <label>Nome<input name="name" class="admin-input" required /></label>
+              <label>E-mail<input name="email" class="admin-input" type="email" required /></label>
+            </div>
+            <div class="form-grid">
+              <label>WhatsApp<input name="phone" class="admin-input" inputmode="tel" /></label>
+              <label>Senha<input name="password" class="admin-input" type="password" required /></label>
+            </div>
+            <div class="form-grid">
+              <label>CEP<input name="cep" class="admin-input" inputmode="numeric" placeholder="00000-000" /></label>
+              <label>Número<input name="number" class="admin-input" /></label>
+            </div>
+            <label>Rua/Avenida<input name="street" class="admin-input" /></label>
+            <div class="form-grid">
+              <label>Bairro<input name="neighborhood" class="admin-input" /></label>
+              <label>Cidade<input name="city" class="admin-input" /></label>
+            </div>
+            <div class="form-grid">
+              <label>Estado<input name="stateUf" class="admin-input" maxlength="2" /></label>
+              <label>Complemento<input name="complement" class="admin-input" /></label>
+            </div>
+            <div class="form-grid">
+              <button class="primary-btn" type="submit"><i data-lucide="save"></i> Salvar meus dados</button>
+              <button class="danger-btn" id="logoutCustomer" type="button"><i data-lucide="log-out"></i> Sair da conta</button>
+            </div>
+          </form>
+          <div>
+            <h3 style="margin: 8px 0 12px">Meus pedidos</h3>
+            <div class="order-list" id="customerOrdersList"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="productDetailModal" aria-hidden="true">
+      <section class="modal-card wide" role="dialog" aria-modal="true" aria-labelledby="productDetailTitle">
+        <div class="modal-head">
+          <h2 id="productDetailTitle">Ficha técnica</h2>
+          <button class="icon-btn" id="closeProductDetail" type="button" aria-label="Fechar ficha do produto"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal-body" id="productDetailBody"></div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="productModal" aria-hidden="true">
+      <section class="modal-card wide" role="dialog" aria-modal="true" aria-labelledby="productFormTitle">
+        <div class="modal-head">
+          <h2 id="productFormTitle">Novo produto</h2>
+          <button class="icon-btn" id="closeProductModal" type="button" aria-label="Fechar produto"><i data-lucide="x"></i></button>
+        </div>
+        <form class="modal-body admin-form" id="productForm">
+          <input type="hidden" name="id" />
+          <div class="form-grid">
+            <label>Nome do produto<input name="name" required /></label>
+            <label>Categoria<select name="categoryId" required></select></label>
+          </div>
+          <div class="form-grid">
+            <label>Preço de venda<input name="price" type="number" min="0" step="0.01" required /></label>
+            <label>Preço cheio<input name="compareAt" type="number" min="0" step="0.01" /></label>
+          </div>
+          <div class="form-grid">
+            <label>Estoque<input name="stock" type="number" min="0" step="1" required /></label>
+            <label>Avaliação<input name="rating" type="number" min="0" max="5" step="0.1" /></label>
+          </div>
+          <div class="image-editor">
+            <div class="image-preview" id="productImagePreview"><i data-lucide="image"></i></div>
+            <div class="admin-form">
+              <label>Link da imagem<input name="image" type="text" placeholder="https://... ou foto enviada" required /></label>
+              <label>Ou enviar foto do computador<input name="imageFile" type="file" accept="image/*" /></label>
+              <p>Ao enviar uma foto, ela substitui o link acima e fica salva nesta versão local do site.</p>
+            </div>
+          </div>
+          <label>Descrição curta<textarea name="description" required></textarea></label>
+          <div class="form-grid">
+            <label class="check-row"><input name="promo" type="checkbox" /> Produto em promoção</label>
+            <label class="check-row"><input name="visible" type="checkbox" /> Visível na loja</label>
+            <label class="check-row"><input name="featured" type="checkbox" /> Destaque da home</label>
+          </div>
+          <button class="primary-btn" type="submit"><i data-lucide="save"></i> Salvar produto</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="categoryModal" aria-hidden="true">
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="categoryFormTitle">
+        <div class="modal-head">
+          <h2 id="categoryFormTitle">Nova categoria</h2>
+          <button class="icon-btn" id="closeCategoryModal" type="button" aria-label="Fechar categoria"><i data-lucide="x"></i></button>
+        </div>
+        <form class="modal-body admin-form" id="categoryForm">
+          <input type="hidden" name="id" />
+          <label>Nome da categoria<input name="name" required /></label>
+          <label>Descrição<textarea name="description"></textarea></label>
+          <button class="primary-btn" type="submit"><i data-lucide="save"></i> Salvar categoria</button>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+      const storageKey = "viatech-admin-store-v1";
+      const sessionKey = "viatech-admin-session-v1";
+      const adminTokenKey = "viatech-admin-token-v1";
+      const customerSessionKey = "viatech-customer-session-v1";
+      const apiMode = location.protocol.startsWith("http") && !location.pathname.includes("/outputs/");
+
+      const defaultState = {
+        settings: {
+          whatsapp: "",
+          adminUser: "admin",
+          adminPass: "123456",
+          originCep: "14010000",
+          originCity: "Ribeirão Preto",
+          originState: "SP",
+          handlingFee: 3.9,
+          freeShippingFrom: 0,
+        },
+        categories: [
+          { id: "audio", name: "Áudio", description: "Fones, caixas de som e acessórios bluetooth." },
+          { id: "wearables", name: "Wearable", description: "Relógios inteligentes e dispositivos conectados." },
+          { id: "energia", name: "Energia", description: "Carregadores, cabos e power banks." },
+        ],
+        products: [
+          {
+            id: "fone-bluetooth-pro-x",
+            name: "Fone Bluetooth Pro X",
+            categoryId: "audio",
+            price: 249.9,
+            compareAt: 329.9,
+            stock: 8,
+            rating: 4.9,
+            promo: true,
+            visible: true,
+            featured: true,
+            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+            description: "Cancelamento de ruído, áudio imersivo e bateria para longas jornadas.",
+          },
+          {
+            id: "smartwatch-pulse",
+            name: "Smartwatch Pulse",
+            categoryId: "wearables",
+            price: 189.9,
+            compareAt: 239.9,
+            stock: 5,
+            rating: 4.8,
+            promo: true,
+            visible: true,
+            featured: true,
+            image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+            description: "Monitoramento diário, notificações rápidas e design minimalista.",
+          },
+          {
+            id: "power-bank-20k",
+            name: "Power Bank 20K",
+            categoryId: "energia",
+            price: 129.9,
+            compareAt: 159.9,
+            stock: 7,
+            rating: 4.7,
+            promo: true,
+            visible: true,
+            featured: true,
+            image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=900&q=85",
+            description: "Carga rápida para celular, fone, tablet e acessórios durante o dia.",
+          },
+        ],
+        reviews: [],
+        customers: [],
+        orders: [
+          {
+            id: "VT-DEMO01",
+            date: "18/06/2026, 18:20:00",
+            customer: { name: "Cliente exemplo", phone: "(11) 90000-0000", delivery: "Entrega", address: "Rua Exemplo, 123", notes: "Pedido de demonstração." },
+            items: [{ productId: "power-bank-20k", name: "Power Bank 20K", category: "Energia", qty: 1, price: 129.9, subtotal: 129.9 }],
+            total: 129.9,
+            status: "pendente",
+            tracking: "",
+          },
+        ],
+      };
+
+      let state = loadState();
+      const cart = new Map();
+      const addressCache = new Map();
+      let currentShippingQuotes = [];
+      let selectedShippingQuote = null;
+      let lastStoreScrollY = 0;
+
+      const $ = (selector, scope = document) => scope.querySelector(selector);
+      const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+      const els = {
+        productGrid: $("#productGrid"),
+        searchInput: $("#searchInput"),
+        categorySelect: $("#categorySelect"),
+        sortSelect: $("#sortSelect"),
+        cartPanel: $("#cartPanel"),
+        cartItems: $("#cartItems"),
+        cartCount: $("#cartCount"),
+        cartTotal: $("#cartTotal"),
+        orderModal: $("#orderModal"),
+        orderSummary: $("#orderSummary"),
+        orderForm: $("#orderForm"),
+        freightBox: $("#freightBox"),
+        freightStatus: $("#freightStatus"),
+        freightOptions: $("#freightOptions"),
+        freightOrigin: $("#freightOrigin"),
+        customerModal: $("#customerModal"),
+        customerGuest: $("#customerGuest"),
+        customerAccount: $("#customerAccount"),
+        customerLoginForm: $("#customerLoginForm"),
+        customerProfileForm: $("#customerProfileForm"),
+        customerOrdersList: $("#customerOrdersList"),
+        productDetailModal: $("#productDetailModal"),
+        productDetailBody: $("#productDetailBody"),
+        adminLogin: $("#adminLogin"),
+        adminApp: $("#adminApp"),
+        adminLoginForm: $("#adminLoginForm"),
+        statsGrid: $("#statsGrid"),
+        adminProductsList: $("#adminProductsList"),
+        adminCategoriesList: $("#adminCategoriesList"),
+        adminOrdersList: $("#adminOrdersList"),
+        orderFilter: $("#orderFilter"),
+        productModal: $("#productModal"),
+        productForm: $("#productForm"),
+        categoryModal: $("#categoryModal"),
+        categoryForm: $("#categoryForm"),
+        storeSettingsForm: $("#storeSettingsForm"),
+        adminCredentialsForm: $("#adminCredentialsForm"),
+        toast: $("#toast"),
+      };
+
+      function loadState() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+          if (saved && Array.isArray(saved.products)) {
+            return {
+              ...structuredClone(defaultState),
+              ...saved,
+              settings: { ...defaultState.settings, ...(saved.settings || {}) },
+              categories: saved.categories?.length ? saved.categories : structuredClone(defaultState.categories),
+              products: saved.products?.length ? saved.products : structuredClone(defaultState.products),
+              reviews: Array.isArray(saved.reviews) ? saved.reviews : [],
+              customers: Array.isArray(saved.customers) ? saved.customers : [],
+              orders: Array.isArray(saved.orders) ? saved.orders : structuredClone(defaultState.orders),
+            };
+          }
+        } catch (error) {
+          console.warn("Falha ao carregar dados locais.", error);
+        }
+        return structuredClone(defaultState);
+      }
+
+      function normalizeLoadedState(saved) {
+        return {
+          ...structuredClone(defaultState),
+          ...saved,
+          settings: { ...defaultState.settings, ...(saved.settings || {}) },
+          categories: saved.categories?.length ? saved.categories : structuredClone(defaultState.categories),
+          products: saved.products?.length ? saved.products : structuredClone(defaultState.products),
+          reviews: Array.isArray(saved.reviews) ? saved.reviews : [],
+          customers: Array.isArray(saved.customers) ? saved.customers : [],
+          orders: Array.isArray(saved.orders) ? saved.orders : structuredClone(defaultState.orders),
+        };
+      }
+
+      async function loadStateFromApi() {
+        if (!apiMode) return false;
+        try {
+          const response = await fetch("/api/store", { cache: "no-store" });
+          if (!response.ok) throw new Error("Falha ao carregar loja.");
+          state = normalizeLoadedState(await response.json());
+          return true;
+        } catch (error) {
+          console.warn("Servidor indisponível, usando modo local.", error);
+          return false;
+        }
+      }
+
+      function adminToken() {
+        try {
+          return localStorage.getItem(adminTokenKey) || sessionStorage.getItem(adminTokenKey) || "";
+        } catch {
+          return sessionStorage.getItem(adminTokenKey) || "";
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(state));
+        } catch (error) {
+          console.warn("Falha ao salvar dados locais.", error);
+        }
+        if (apiMode) {
+          fetch("/api/store", {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+              ...(adminToken() ? { authorization: `Bearer ${adminToken()}` } : {}),
+            },
+            body: JSON.stringify(state),
+          })
+            .then((response) => response.ok ? response.json() : Promise.reject(new Error("Falha ao salvar no servidor.")))
+            .then((serverState) => {
+              state = normalizeLoadedState(serverState);
+            })
+            .catch((error) => {
+              console.warn("Falha ao sincronizar com servidor.", error);
+              showToast("Salvo no navegador, mas não sincronizou com o servidor.");
+            });
+        }
+      }
+
+      function setSession(enabled, token = "") {
+        try {
+          localStorage.setItem(sessionKey, enabled ? "1" : "0");
+          if (token) localStorage.setItem(adminTokenKey, token);
+          if (!enabled) localStorage.removeItem(adminTokenKey);
+        } catch {
+          sessionStorage.setItem(sessionKey, enabled ? "1" : "0");
+          if (token) sessionStorage.setItem(adminTokenKey, token);
+          if (!enabled) sessionStorage.removeItem(adminTokenKey);
+        }
+      }
+
+      function hasSession() {
+        try {
+          return localStorage.getItem(sessionKey) === "1";
+        } catch {
+          return sessionStorage.getItem(sessionKey) === "1";
+        }
+      }
+
+      function setCustomerSession(email) {
+        try {
+          localStorage.setItem(customerSessionKey, email || "");
+        } catch {
+          sessionStorage.setItem(customerSessionKey, email || "");
+        }
+      }
+
+      function getCustomerSession() {
+        try {
+          return localStorage.getItem(customerSessionKey) || "";
+        } catch {
+          return sessionStorage.getItem(customerSessionKey) || "";
+        }
+      }
+
+      function currentCustomer() {
+        const email = getCustomerSession();
+        return state.customers.find((customer) => customer.email === email) || null;
+      }
+
+      function cleanCep(value) {
+        return cleanPhone(value).slice(0, 8);
+      }
+
+      function maskCep(value) {
+        const cep = cleanCep(value);
+        return cep.length > 5 ? `${cep.slice(0, 5)}-${cep.slice(5)}` : cep;
+      }
+
+      async function lookupCep(cepValue) {
+        const cep = cleanCep(cepValue);
+        if (cep.length !== 8) return null;
+        if (addressCache.has(cep)) return addressCache.get(cep);
+
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          if (!response.ok) throw new Error("ViaCEP indisponível");
+          const data = await response.json();
+          if (data?.erro) throw new Error("CEP não encontrado no ViaCEP");
+          const address = {
+            cep: data.cep || maskCep(cep),
+            street: data.logradouro || "",
+            neighborhood: data.bairro || "",
+            city: data.localidade || "",
+            stateUf: data.uf || "",
+            ibge: data.ibge || "",
+            ddd: data.ddd || "",
+          };
+          addressCache.set(cep, address);
+          return address;
+        } catch (error) {
+          console.warn("Falha ao consultar ViaCEP.", error);
+        }
+
+        try {
+          const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
+          if (!response.ok) return null;
+          const data = await response.json();
+          const address = {
+            cep: maskCep(data.cep || cep),
+            street: data.street || "",
+            neighborhood: data.neighborhood || "",
+            city: data.city || "",
+            stateUf: data.state || "",
+            ibge: "",
+            ddd: "",
+          };
+          addressCache.set(cep, address);
+          return address;
+        } catch (error) {
+          console.warn("Falha ao consultar BrasilAPI.", error);
+          return null;
+        }
+      }
+
+      async function applyCepToForm(form, silent = false) {
+        const cepField = form.elements.cep;
+        if (!cepField) return false;
+        const cep = cleanCep(cepField.value);
+        if (cep.length !== 8) return false;
+
+        const address = await lookupCep(cep);
+        if (!address) {
+          if (!silent) showToast("Não consegui encontrar esse CEP. Confira os números digitados.");
+          if (form === els.orderForm) resetShipping("Digite um CEP válido para calcular o frete.");
+          return false;
+        }
+
+        cepField.value = maskCep(address.cep || cep);
+        if (form.elements.street) form.elements.street.value = address.street;
+        if (form.elements.neighborhood) form.elements.neighborhood.value = address.neighborhood;
+        if (form.elements.city) form.elements.city.value = address.city;
+        if (form.elements.stateUf) form.elements.stateUf.value = address.stateUf;
+        if (!silent) showToast("Endereço preenchido pelo CEP.");
+        if (form === els.orderForm) updateShippingForOrder(address, silent);
+        return true;
+      }
+
+      function escapeHTML(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function uid(prefix = "id") {
+        return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+      }
+
+      function slugify(value) {
+        return String(value || "item")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "") || "item";
+      }
+
+      function cleanPhone(value) {
+        return String(value || "").replace(/\D/g, "");
+      }
+
+      function getCategoryName(categoryId) {
+        return state.categories.find((category) => category.id === categoryId)?.name || "Sem categoria";
+      }
+
+      function hasDiscount(product) {
+        return product.promo && Number(product.compareAt) > Number(product.price);
+      }
+
+      function discountLabel(product) {
+        if (!hasDiscount(product)) return "";
+        return `-${Math.round((1 - product.price / product.compareAt) * 100)}%`;
+      }
+
+      function productReviews(productId) {
+        return (state.reviews || [])
+          .filter((review) => review.productId === productId)
+          .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+      }
+
+      function productRating(product) {
+        const reviews = productReviews(product.id);
+        if (!reviews.length) return Number(product.rating || 0);
+        const avg = reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) / reviews.length;
+        return Math.round(avg * 10) / 10;
+      }
+
+      function productSpecs(product) {
+        const category = getCategoryName(product.categoryId);
+        const specs = [
+          ["Categoria", category],
+          ["Estoque", Number(product.stock || 0) > 0 ? `${product.stock} unidade(s)` : "Esgotado"],
+          ["Avaliação", `${productRating(product).toFixed(1)} de 5`],
+          ["Promoção", hasDiscount(product) ? `${discountLabel(product)} de desconto` : "Sem promoção"],
+        ];
+        if (category.toLowerCase().includes("áudio") || category.toLowerCase().includes("audio")) {
+          specs.push(["Conexão", "Bluetooth"], ["Uso indicado", "Música, chamadas e rotina diária"]);
+        } else if (category.toLowerCase().includes("wear")) {
+          specs.push(["Compatibilidade", "Android e iOS"], ["Recursos", "Notificações e monitoramento diário"]);
+        } else if (category.toLowerCase().includes("energia")) {
+          specs.push(["Uso indicado", "Celular, fone e acessórios"], ["Portabilidade", "Para levar no dia a dia"]);
+        } else {
+          specs.push(["Garantia", "Conferir com a loja"], ["Disponibilidade", "Sob confirmação"]);
+        }
+        return specs;
+      }
+
+      function renderReviewList(product) {
+        const reviews = productReviews(product.id);
+        if (!reviews.length) return `<div class="empty-state">Ainda não há avaliações para este produto.</div>`;
+        return reviews.slice(0, 6).map((review) => `
+          <article class="review-card">
+            <header>
+              <strong>${escapeHTML(review.customerName || "Cliente")}</strong>
+              <span class="rating"><i data-lucide="star"></i>${Number(review.rating || 0).toFixed(1)}</span>
+            </header>
+            <p>${escapeHTML(review.comment || "Sem comentário.")}</p>
+          </article>
+        `).join("");
+      }
+
+      function renderReviewForm(product) {
+        const customer = currentCustomer();
+        if (!customer) {
+          return `<div class="site-lock-note">Entre na área do cliente para deixar uma avaliação depois da compra.</div>`;
+        }
+        return `
+          <form class="admin-form" id="reviewForm">
+            <input type="hidden" name="productId" value="${escapeHTML(product.id)}" />
+            <div class="form-grid">
+              <label>Nota
+                <select name="rating" class="admin-input">
+                  <option value="5">5 - Excelente</option>
+                  <option value="4">4 - Muito bom</option>
+                  <option value="3">3 - Bom</option>
+                  <option value="2">2 - Regular</option>
+                  <option value="1">1 - Ruim</option>
+                </select>
+              </label>
+              <label>Nome<input class="admin-input" name="name" value="${escapeHTML(customer.name || "Cliente")}" /></label>
+            </div>
+            <label>Comentário<textarea class="admin-input" name="comment" placeholder="Conte como foi sua experiência com o produto" required></textarea></label>
+            <button class="secondary-btn" type="submit"><i data-lucide="star"></i> Enviar avaliação</button>
+          </form>
+        `;
+      }
+
+      function updateProductImagePreview(src = "") {
+        const preview = $("#productImagePreview");
+        if (!preview) return;
+        preview.innerHTML = src
+          ? `<img src="${escapeHTML(src)}" alt="Prévia da foto do produto" />`
+          : `<i data-lucide="image"></i>`;
+        lucide.createIcons();
+      }
+
+      function fileToCompressedImage(file) {
+        return new Promise((resolve, reject) => {
+          if (!file) {
+            resolve("");
+            return;
+          }
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("Não foi possível ler a imagem."));
+          reader.onload = () => {
+            const image = new Image();
+            image.onerror = () => reject(new Error("Não foi possível abrir a imagem."));
+            image.onload = () => {
+              const maxSize = 900;
+              const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+              const canvas = document.createElement("canvas");
+              canvas.width = Math.max(1, Math.round(image.width * scale));
+              canvas.height = Math.max(1, Math.round(image.height * scale));
+              const context = canvas.getContext("2d");
+              context.drawImage(image, 0, 0, canvas.width, canvas.height);
+              resolve(canvas.toDataURL("image/jpeg", 0.82));
+            };
+            image.src = String(reader.result || "");
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function visibleProducts() {
+        return state.products.filter((product) => product.visible !== false);
+      }
+
+      function getCartEntries() {
+        return [...cart.entries()]
+          .map(([id, qty]) => {
+            const product = state.products.find((item) => item.id === id);
+            if (!product) {
+              cart.delete(id);
+              return null;
+            }
+            return { ...product, qty };
+          })
+          .filter(Boolean);
+      }
+
+      function cartTotalValue(entries = getCartEntries()) {
+        return entries.reduce((sum, item) => sum + item.qty * item.price, 0);
+      }
+
+      function roundCurrency(value) {
+        return Math.round((Number(value) || 0) * 100) / 100;
+      }
+
+      function normalizeText(value) {
+        return String(value || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function originCep() {
+        return cleanCep(state.settings.originCep || defaultState.settings.originCep);
+      }
+
+      function originLabel() {
+        return `${state.settings.originCity || "Ribeirão Preto"}-${state.settings.originState || "SP"}${originCep() ? `, CEP ${maskCep(originCep())}` : ""}`;
+      }
+
+      function shippingZone(address) {
+        const uf = String(address?.stateUf || "").toUpperCase();
+        const city = normalizeText(address?.city || "");
+        if (uf === "SP" && city.includes("ribeirao preto")) {
+          return { type: "local", name: "Ribeirão Preto" };
+        }
+        if (uf === "SP") return { type: "correios", name: "São Paulo interior/capital", pacBase: 18.9, sedexBase: 29.9, pacDays: [3, 5], sedexDays: [1, 3] };
+        if (["RJ", "MG", "ES"].includes(uf)) return { type: "correios", name: "Sudeste", pacBase: 26.9, sedexBase: 39.9, pacDays: [5, 8], sedexDays: [2, 4] };
+        if (["PR", "SC", "RS", "DF", "GO", "MT", "MS"].includes(uf)) return { type: "correios", name: "Sul/Centro-Oeste", pacBase: 33.9, sedexBase: 51.9, pacDays: [6, 10], sedexDays: [3, 5] };
+        if (["BA", "SE", "AL", "PE", "PB", "RN", "CE", "PI", "MA"].includes(uf)) return { type: "correios", name: "Nordeste", pacBase: 42.9, sedexBase: 64.9, pacDays: [8, 13], sedexDays: [4, 7] };
+        return { type: "correios", name: "Norte/distante", pacBase: 54.9, sedexBase: 82.9, pacDays: [10, 16], sedexDays: [5, 9] };
+      }
+
+      function packageEstimate(entries = getCartEntries()) {
+        const quantity = entries.reduce((sum, item) => sum + item.qty, 0);
+        const weightKg = Math.max(0.3, quantity * 0.35);
+        const length = Math.min(105, 22 + quantity * 2);
+        const width = 16;
+        const height = Math.min(60, 6 + Math.ceil(quantity / 2) * 2);
+        const cubicWeight = (length * width * height) / 6000;
+        return {
+          quantity,
+          weightKg,
+          length,
+          width,
+          height,
+          chargedWeight: Math.max(weightKg, cubicWeight),
+        };
+      }
+
+      function localDeliveryPrice(subtotal, pkg) {
+        if (subtotal >= 300) return 2;
+        const quantityFee = Math.max(0, pkg.quantity - 1) * 1.5;
+        const valueFee = subtotal >= 180 ? 1 : subtotal >= 100 ? 2 : 3;
+        return roundCurrency(Math.min(12, Math.max(2, 4 + quantityFee + valueFee)));
+      }
+
+      function calculateShippingQuotes(destinationAddress) {
+        const entries = getCartEntries();
+        const subtotal = cartTotalValue(entries);
+        const pkg = packageEstimate(entries);
+        const zone = shippingZone(destinationAddress);
+        const handling = Math.max(0, Number(state.settings.handlingFee) || 0);
+        const freeFrom = Math.max(0, Number(state.settings.freeShippingFrom) || 0);
+        const isFree = freeFrom > 0 && subtotal >= freeFrom;
+        const weightNote = `${pkg.chargedWeight.toFixed(2).replace(".", ",")} kg cobrados | ${pkg.length}x${pkg.width}x${pkg.height} cm`;
+
+        if (zone.type === "local") {
+          const localPrice = isFree ? 0 : localDeliveryPrice(subtotal, pkg);
+          const expressPrice = isFree ? 0 : Math.min(12, Math.max(localPrice + 2, 8));
+          return [
+            {
+              service: "Entrega local",
+              price: roundCurrency(localPrice),
+              deadline: "até 1 dia útil",
+              note: `Entrega própria em Ribeirão Preto · ${weightNote}${isFree ? " · frete grátis aplicado" : ""}`,
+            },
+            {
+              service: "Entrega expressa local",
+              price: roundCurrency(expressPrice),
+              deadline: "no mesmo dia ou próximo período",
+              note: `Entrega própria mais rápida · limite local de R$ 12`,
+            },
+          ];
+        }
+
+        const declaredValueFee = subtotal * 0.012;
+        const extraWeight = Math.max(0, pkg.chargedWeight - 0.3);
+        const pacPrice = isFree ? 0 : roundCurrency(zone.pacBase + handling + declaredValueFee + extraWeight * 4.6);
+        const sedexPrice = roundCurrency(zone.sedexBase + handling + declaredValueFee + extraWeight * 7.4);
+
+        return [
+          {
+            service: "PAC",
+            price: pacPrice,
+            deadline: `${zone.pacDays[0]} a ${zone.pacDays[1]} dias úteis`,
+            note: `${zone.name} · ${weightNote}${isFree ? " · frete grátis aplicado" : ""}`,
+          },
+          {
+            service: "SEDEX",
+            price: sedexPrice,
+            deadline: `${zone.sedexDays[0]} a ${zone.sedexDays[1]} dias úteis`,
+            note: `${zone.name} · ${weightNote}`,
+          },
+        ];
+      }
+
+      function syncShippingInputs() {
+        const form = els.orderForm;
+        if (!form?.elements.shippingService) return;
+        form.elements.shippingService.value = selectedShippingQuote?.service || "";
+        form.elements.shippingPrice.value = selectedShippingQuote ? String(selectedShippingQuote.price) : "";
+        form.elements.shippingDeadline.value = selectedShippingQuote?.deadline || "";
+      }
+
+      function renderShippingOptions() {
+        if (!els.freightOptions) return;
+        els.freightOrigin.textContent = `Origem: ${originLabel()}`;
+        els.freightOptions.innerHTML = currentShippingQuotes.map((quote) => `
+          <button class="freight-option ${selectedShippingQuote?.service === quote.service ? "active" : ""}" type="button" data-shipping-service="${escapeHTML(quote.service)}">
+            <strong>${escapeHTML(quote.service)} · ${money.format(quote.price)}</strong>
+            <span>${escapeHTML(quote.deadline)}</span>
+            <small>${escapeHTML(quote.note)}</small>
+          </button>
+        `).join("");
+        syncShippingInputs();
+        lucide.createIcons();
+      }
+
+      function resetShipping(message = "Digite o CEP do cliente para calcular entrega local ou Correios.") {
+        currentShippingQuotes = [];
+        selectedShippingQuote = null;
+        syncShippingInputs();
+        if (els.freightStatus) els.freightStatus.textContent = message;
+        if (els.freightOptions) els.freightOptions.innerHTML = "";
+        renderOrderSummary();
+      }
+
+      function updateFreightVisibility() {
+        const delivery = els.orderForm?.elements.delivery?.value || "Entrega";
+        const needsShipping = delivery === "Entrega";
+        els.freightBox?.classList.toggle("hidden", !needsShipping);
+        if (!needsShipping) {
+          selectedShippingQuote = null;
+          currentShippingQuotes = [];
+          syncShippingInputs();
+          if (els.freightStatus) els.freightStatus.textContent = "Sem frete no pedido: retirada ou combinação direta pelo WhatsApp.";
+          if (els.freightOptions) els.freightOptions.innerHTML = "";
+        }
+        return needsShipping;
+      }
+
+      async function updateShippingForOrder(destinationAddress = null, silent = false) {
+        if (!els.orderForm) return;
+        if (!updateFreightVisibility()) {
+          renderOrderSummary();
+          return;
+        }
+
+        const cep = cleanCep(els.orderForm.elements.cep.value);
+        if (cep.length !== 8) {
+          resetShipping("Digite o CEP do cliente para calcular entrega local ou Correios.");
+          return;
+        }
+
+        if (els.freightStatus) els.freightStatus.textContent = "Consultando CEP e calculando frete...";
+        const address = destinationAddress || await lookupCep(cep);
+        if (!address) {
+          resetShipping("Não consegui consultar esse CEP. Confira o número para calcular o frete.");
+          return;
+        }
+
+        currentShippingQuotes = calculateShippingQuotes(address);
+        selectedShippingQuote = currentShippingQuotes.find((quote) => quote.service === selectedShippingQuote?.service) || currentShippingQuotes[0] || null;
+        if (els.freightStatus) {
+          const isLocal = shippingZone(address).type === "local";
+          els.freightStatus.textContent = `Destino: ${address.city || "cidade não informada"}-${address.stateUf || ""}. ${isLocal ? "Entrega própria local." : "PAC/SEDEX simulados."} Origem: ${originLabel()}.`;
+        }
+        renderShippingOptions();
+        renderOrderSummary();
+        if (!silent) showToast("Frete calculado.");
+      }
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("show");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => els.toast.classList.remove("show"), 2400);
+      }
+
+      function openModal(modal) {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal(modal) {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      function renderStore() {
+        renderCategoryFilter();
+        renderHighlights();
+        renderProducts();
+        renderCart();
+        renderFooterContact();
+        renderCustomerButton();
+        lucide.createIcons();
+      }
+
+      function renderCategoryFilter() {
+        els.categorySelect.innerHTML = `<option value="todos">Todos</option>` + state.categories.map((category) => `<option value="${escapeHTML(category.id)}">${escapeHTML(category.name)}</option>`).join("");
+      }
+
+      function renderHighlights() {
+        const featured = visibleProducts().find((product) => product.featured) || visibleProducts()[0];
+        if (featured) {
+          $("#featuredImage").src = featured.image;
+          $("#featuredName").textContent = featured.name;
+          $("#featuredPrice").textContent = money.format(featured.price);
+        }
+        $("#miniHighlights").innerHTML = visibleProducts().filter((item) => item.id !== featured?.id).slice(0, 2).map((product) => `
+          <article class="mini-card">
+            <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" />
+            <div><strong>${escapeHTML(product.name)}</strong><span>${escapeHTML(getCategoryName(product.categoryId))}</span></div>
+          </article>
+        `).join("");
+      }
+
+      function openProductDetail(productId) {
+        const product = state.products.find((item) => item.id === productId && item.visible !== false);
+        if (!product) return;
+        const reviews = productReviews(product.id);
+        $("#productDetailTitle").textContent = product.name;
+        els.productDetailBody.innerHTML = `
+          <div class="product-detail-grid">
+            <div class="product-detail-media">
+              <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" />
+            </div>
+            <div class="product-detail-copy">
+              <span class="tag">${escapeHTML(getCategoryName(product.categoryId))}</span>
+              <h3 style="margin: 0; font-size: 1.55rem">${escapeHTML(product.name)}</h3>
+              <p>${escapeHTML(product.description)}</p>
+              <div class="price-row">
+                <div class="price"><strong>${money.format(product.price)}</strong>${hasDiscount(product) ? `<del>${money.format(product.compareAt)}</del>` : ""}</div>
+                <span class="rating"><i data-lucide="star"></i>${productRating(product).toFixed(1)} ${reviews.length ? `(${reviews.length})` : ""}</span>
+              </div>
+              <div class="spec-grid">
+                ${productSpecs(product).map(([label, value]) => `
+                  <div class="spec-item"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong></div>
+                `).join("")}
+              </div>
+              <button class="primary-btn" type="button" data-add="${escapeHTML(product.id)}" ${product.stock <= 0 ? "disabled" : ""}>
+                <i data-lucide="shopping-bag"></i> ${product.stock <= 0 ? "Produto esgotado" : "Adicionar ao carrinho"}
+              </button>
+            </div>
+          </div>
+          <section class="reviews-box">
+            <h3 style="margin: 0">Avaliações dos clientes</h3>
+            ${renderReviewForm(product)}
+            <div class="order-list">${renderReviewList(product)}</div>
+          </section>
+        `;
+        openModal(els.productDetailModal);
+        lucide.createIcons();
+      }
+
+      function renderProducts() {
+        const query = els.searchInput.value.trim().toLowerCase();
+        const category = els.categorySelect.value;
+        const sort = els.sortSelect.value;
+        let products = visibleProducts().filter((product) => {
+          const search = `${product.name} ${product.description}`.toLowerCase();
+          const matchesQuery = search.includes(query);
+          const matchesCategory = category === "todos" || product.categoryId === category;
+          return matchesQuery && matchesCategory;
+        });
+
+        products = [...products].sort((a, b) => {
+          if (sort === "menor") return a.price - b.price;
+          if (sort === "maior") return b.price - a.price;
+          if (sort === "avaliados") return productRating(b) - productRating(a);
+          return state.products.indexOf(a) - state.products.indexOf(b);
+        });
+
+        els.productGrid.innerHTML = products.length
+          ? products.map((product) => `
+            <article class="product-card" data-view-product="${escapeHTML(product.id)}">
+              <div class="product-media">
+                <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" loading="lazy" />
+                <span class="tag">${escapeHTML(getCategoryName(product.categoryId))}</span>
+                ${hasDiscount(product) ? `<span class="discount">${discountLabel(product)}</span>` : ""}
+              </div>
+              <div class="product-body">
+                <h3>${escapeHTML(product.name)}</h3>
+                <p>${escapeHTML(product.description)}</p>
+                <div class="price-row">
+                  <div class="price"><strong>${money.format(product.price)}</strong>${hasDiscount(product) ? `<del>${money.format(product.compareAt)}</del>` : ""}</div>
+                  <span class="rating"><i data-lucide="star"></i>${productRating(product).toFixed(1)}</span>
+                </div>
+                <button class="ghost-btn" type="button" data-view-product="${escapeHTML(product.id)}" style="width: 100%"><i data-lucide="file-text"></i> Ver ficha técnica</button>
+                <button class="add-btn" type="button" data-add="${escapeHTML(product.id)}" ${product.stock <= 0 ? "disabled" : ""}>
+                  <i data-lucide="shopping-bag"></i> ${product.stock <= 0 ? "Esgotado" : "Adicionar"}
+                </button>
+              </div>
+            </article>
+          `).join("")
+          : `<div class="empty-state" style="grid-column: 1 / -1">Nenhum produto encontrado.</div>`;
+        lucide.createIcons();
+      }
+
+      function renderCart() {
+        const entries = getCartEntries();
+        const totalQty = entries.reduce((sum, item) => sum + item.qty, 0);
+        els.cartCount.textContent = totalQty;
+        els.cartTotal.textContent = money.format(cartTotalValue(entries));
+        els.cartItems.innerHTML = entries.length
+          ? entries.map((item) => `
+            <div class="cart-item">
+              <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" />
+              <div><strong>${escapeHTML(item.name)}</strong><span>${money.format(item.price)}</span></div>
+              <div class="qty">
+                <button type="button" data-dec="${escapeHTML(item.id)}">-</button>
+                ${item.qty}
+                <button type="button" data-inc="${escapeHTML(item.id)}">+</button>
+              </div>
+            </div>
+          `).join("")
+          : `<div class="empty-state">Seu carrinho está vazio.<br />Adicione um produto da vitrine.</div>`;
+      }
+
+      function openCart() {
+        els.cartPanel.classList.add("open");
+      }
+
+      function closeCart() {
+        els.cartPanel.classList.remove("open");
+      }
+
+      function addToCart(productId) {
+        const product = state.products.find((item) => item.id === productId);
+        if (!product || product.visible === false) return;
+        const currentQty = cart.get(productId) || 0;
+        if (currentQty >= product.stock) {
+          showToast("Quantidade maior que o estoque disponível.");
+          return;
+        }
+        cart.set(productId, currentQty + 1);
+        renderCart();
+        showToast(`${product.name} adicionado ao carrinho.`);
+      }
+
+      function renderFooterContact() {
+        const phone = cleanPhone(state.settings.whatsapp);
+        $("#footerContact").innerHTML = phone ? `WhatsApp: +${phone}<br />Segunda a Sexta, 9h - 18h` : `Configure o WhatsApp no painel admin.<br />Segunda a Sexta, 9h - 18h`;
+      }
+
+      function renderCustomerButton() {
+        const customer = currentCustomer();
+        $("#customerAction").innerHTML = customer ? `<i data-lucide="user-check"></i> Minha conta` : `<i data-lucide="user"></i> Entrar`;
+      }
+
+      function renderOrderSummary() {
+        const entries = getCartEntries();
+        const delivery = els.orderForm?.elements.delivery?.value || "Entrega";
+        const subtotal = cartTotalValue(entries);
+        const freightValue = delivery === "Entrega" && selectedShippingQuote ? selectedShippingQuote.price : 0;
+        const freightText = delivery !== "Entrega"
+          ? "Sem frete agora"
+          : selectedShippingQuote
+            ? `${selectedShippingQuote.service} (${selectedShippingQuote.deadline}) · ${money.format(selectedShippingQuote.price)}`
+            : "Informe o CEP para calcular";
+        els.orderSummary.innerHTML = `
+          ${entries.map((item, index) => `
+            <div><strong>${index + 1}. ${escapeHTML(item.name)}</strong><br />${item.qty}x ${money.format(item.price)} = ${money.format(item.qty * item.price)}</div>
+          `).join("")}
+          <div>Subtotal: <strong>${money.format(subtotal)}</strong></div>
+          <div>Frete: <strong>${escapeHTML(freightText)}</strong></div>
+          <div><strong>Total: ${money.format(subtotal + freightValue)}</strong></div>
+        `;
+      }
+
+      function openCustomerModal() {
+        renderCustomerArea();
+        openModal(els.customerModal);
+      }
+
+      function renderCustomerArea() {
+        const customer = currentCustomer();
+        if (!customer) {
+          els.customerGuest.classList.remove("hidden");
+          els.customerAccount.classList.add("hidden");
+          els.customerLoginForm.reset();
+          $("#customerTitle").textContent = "Entrar ou criar conta";
+          return;
+        }
+
+        els.customerGuest.classList.add("hidden");
+        els.customerAccount.classList.remove("hidden");
+        $("#customerTitle").textContent = "Minha conta";
+        const form = els.customerProfileForm;
+        form.elements.name.value = customer.name || "";
+        form.elements.email.value = customer.email || "";
+        form.elements.phone.value = customer.phone || "";
+        form.elements.password.value = customer.password || "";
+        form.elements.cep.value = customer.address?.cep || "";
+        form.elements.street.value = customer.address?.street || "";
+        form.elements.number.value = customer.address?.number || "";
+        form.elements.neighborhood.value = customer.address?.neighborhood || "";
+        form.elements.city.value = customer.address?.city || "";
+        form.elements.stateUf.value = customer.address?.stateUf || "";
+        form.elements.complement.value = customer.address?.complement || "";
+        renderCustomerOrders();
+      }
+
+      function renderCustomerOrders() {
+        const customer = currentCustomer();
+        if (!customer) return;
+        const orders = state.orders.filter((order) => order.customer.email === customer.email || cleanPhone(order.customer.phone) === cleanPhone(customer.phone));
+        els.customerOrdersList.innerHTML = orders.length
+          ? orders.map((order) => `
+            <article class="order-card">
+              <div class="order-top">
+                <div class="order-code">#${escapeHTML(order.id)} <span class="status-pill ${escapeHTML(order.status)}">${escapeHTML(order.status)}</span></div>
+                <span style="color: var(--muted)">${escapeHTML(order.date)}</span>
+              </div>
+              <p>Total: <strong>${money.format(order.total)}</strong></p>
+              <p>Frete: <strong>${escapeHTML(order.shipping?.service || "A combinar")}</strong>${order.shipping?.price ? ` · ${money.format(order.shipping.price)}` : ""}</p>
+              <div class="order-items">${order.items.map((item) => `${item.qty}x ${escapeHTML(item.name)} · ${money.format(item.subtotal)}`).join("<br />")}</div>
+              ${order.tracking ? `<p style="margin-top: 10px">Rastreio: <strong>${escapeHTML(order.tracking)}</strong></p>` : ""}
+            </article>
+          `).join("")
+          : `<div class="empty-state">Nenhum pedido encontrado para esta conta.</div>`;
+      }
+
+      function customerAddressLine(customer) {
+        const address = customer?.address || {};
+        return [address.street, address.number, address.neighborhood, address.city, address.stateUf, address.complement]
+          .filter(Boolean)
+          .join(", ");
+      }
+
+      function fillOrderFromCustomer() {
+        const customer = currentCustomer();
+        if (!customer) return;
+        const form = els.orderForm;
+        form.elements.customerName.value = customer.name || "";
+        form.elements.customerEmail.value = customer.email || "";
+        form.elements.customerPhone.value = customer.phone || "";
+        form.elements.cep.value = customer.address?.cep || "";
+        form.elements.street.value = customer.address?.street || "";
+        form.elements.number.value = customer.address?.number || "";
+        form.elements.neighborhood.value = customer.address?.neighborhood || "";
+        form.elements.city.value = customer.address?.city || "";
+        form.elements.stateUf.value = customer.address?.stateUf || "";
+        form.elements.complement.value = customer.address?.complement || "";
+      }
+
+      function openOrderModal() {
+        const entries = getCartEntries();
+        if (!entries.length) {
+          showToast("Adicione um produto ao carrinho antes de finalizar.");
+          return;
+        }
+        if (cleanPhone(state.settings.whatsapp).length < 12) {
+          showToast("Configure o WhatsApp da loja no painel admin.");
+          openAdmin();
+          switchAdminTab("settings");
+          return;
+        }
+        els.orderForm.reset();
+        renderOrderSummary();
+        resetShipping();
+        fillOrderFromCustomer();
+        updateFreightVisibility();
+        openModal(els.orderModal);
+        els.orderForm.elements.customerName.focus();
+        updateShippingForOrder(null, true);
+      }
+
+      function buildOrder(formData) {
+        const entries = getCartEntries();
+        const delivery = String(formData.get("delivery") || "Combinar pelo WhatsApp");
+        const shippingPrice = delivery === "Entrega" ? Number(formData.get("shippingPrice") || 0) : 0;
+        const subtotal = cartTotalValue(entries);
+        const order = {
+          id: `VT-${Date.now().toString(36).toUpperCase()}`,
+          date: new Date().toLocaleString("pt-BR"),
+          customer: {
+            name: String(formData.get("customerName") || "").trim(),
+            email: String(formData.get("customerEmail") || "").trim(),
+            phone: String(formData.get("customerPhone") || "").trim() || "Não informado",
+            delivery,
+            cep: String(formData.get("cep") || "").trim(),
+            street: String(formData.get("street") || "").trim(),
+            number: String(formData.get("number") || "").trim(),
+            neighborhood: String(formData.get("neighborhood") || "").trim(),
+            city: String(formData.get("city") || "").trim(),
+            stateUf: String(formData.get("stateUf") || "").trim(),
+            complement: String(formData.get("complement") || "").trim(),
+            address: [
+              String(formData.get("street") || "").trim(),
+              String(formData.get("number") || "").trim(),
+              String(formData.get("neighborhood") || "").trim(),
+              String(formData.get("city") || "").trim(),
+              String(formData.get("stateUf") || "").trim(),
+              String(formData.get("complement") || "").trim(),
+            ].filter(Boolean).join(", ") || "A combinar",
+            notes: String(formData.get("notes") || "").trim() || "Nenhuma",
+          },
+          items: entries.map((item) => ({
+            productId: item.id,
+            name: item.name,
+            category: getCategoryName(item.categoryId),
+            qty: item.qty,
+            price: item.price,
+            subtotal: item.qty * item.price,
+            discount: hasDiscount(item) ? discountLabel(item) : "",
+          })),
+          subtotal,
+          shipping: {
+            service: delivery === "Entrega" ? String(formData.get("shippingService") || "A calcular") : delivery,
+            price: shippingPrice,
+            deadline: delivery === "Entrega" ? String(formData.get("shippingDeadline") || "A confirmar") : "",
+            origin: originLabel(),
+            note: "Frete simulado. Confirmar valor final antes do pagamento.",
+          },
+          total: subtotal + shippingPrice,
+          status: "pendente",
+          tracking: "",
+        };
+        return order;
+      }
+
+      function buildWhatsAppMessage(order) {
+        const itemLines = order.items.map((item, index) => [
+          `${index + 1}. ${item.name}`,
+          `   Categoria: ${item.category}`,
+          `   Quantidade: ${item.qty}`,
+          `   Valor unitário: ${money.format(item.price)}${item.discount ? ` | Promoção: ${item.discount}` : ""}`,
+          `   Subtotal: ${money.format(item.subtotal)}`,
+        ].join("\n")).join("\n\n");
+
+        return [
+          "*PEDIDO VIATECH*",
+          `Código: ${order.id}`,
+          `Data: ${order.date}`,
+          "",
+          "*Cliente*",
+          `Nome: ${order.customer.name}`,
+          `E-mail: ${order.customer.email || "Não informado"}`,
+          `WhatsApp: ${order.customer.phone}`,
+          `Entrega: ${order.customer.delivery}`,
+          `CEP: ${order.customer.cep || "Não informado"}`,
+          `Endereço/referência: ${order.customer.address}`,
+          `Frete: ${order.shipping?.service || "A combinar"}${order.shipping?.deadline ? ` | Prazo: ${order.shipping.deadline}` : ""} | Valor: ${money.format(order.shipping?.price || 0)}`,
+          `Origem da loja: ${order.shipping?.origin || originLabel()}`,
+          `Observações: ${order.customer.notes}`,
+          "",
+          "*Ficha do pedido*",
+          itemLines,
+          "",
+          "*Resumo*",
+          `Total de itens: ${order.items.reduce((sum, item) => sum + item.qty, 0)}`,
+          `Subtotal dos produtos: ${money.format(order.subtotal ?? order.total)}`,
+          `Frete: ${money.format(order.shipping?.price || 0)}`,
+          `Total do pedido: ${money.format(order.total)}`,
+          "",
+          "Frete simulado para conferência. Aguardando confirmação de estoque e forma de pagamento.",
+        ].join("\n");
+      }
+
+      function saveOrder(order) {
+        state.orders.unshift(order);
+        order.items.forEach((item) => {
+          const product = state.products.find((entry) => entry.id === item.productId);
+          if (product) product.stock = Math.max(0, Number(product.stock || 0) - item.qty);
+        });
+        saveState();
+        cart.clear();
+        renderStore();
+        renderAdmin();
+      }
+
+      function openAdmin() {
+        const wasAdminScreen = document.body.classList.contains("admin-screen");
+        if (!wasAdminScreen) lastStoreScrollY = window.scrollY || 0;
+        document.body.classList.add("admin-screen");
+        closeCart();
+        if (!wasAdminScreen) window.scrollTo({ top: 0, behavior: "auto" });
+        if (hasSession()) {
+          els.adminLogin.classList.add("hidden");
+          els.adminApp.classList.remove("hidden");
+          renderAdmin();
+        } else {
+          els.adminLogin.classList.remove("hidden");
+          els.adminApp.classList.add("hidden");
+          els.adminLoginForm.elements.user.value = state.settings.adminUser || "admin";
+          els.adminLoginForm.elements.password.value = "";
+        }
+        lucide.createIcons();
+      }
+
+      function closeAdmin() {
+        document.body.classList.remove("admin-screen");
+        renderStore();
+        window.scrollTo({ top: lastStoreScrollY, behavior: "auto" });
+      }
+
+      function switchAdminTab(tab) {
+        $$(".admin-nav-btn").forEach((button) => button.classList.toggle("active", button.dataset.adminTab === tab));
+        $$(".admin-panel").forEach((panel) => panel.classList.remove("active"));
+        $(`#admin-${tab}`).classList.add("active");
+        renderAdmin();
+      }
+
+      function renderAdmin() {
+        if (!hasSession()) return;
+        renderDashboard();
+        renderAdminProducts();
+        renderAdminCategories();
+        renderAdminOrders();
+        renderAdminSettings();
+        lucide.createIcons();
+      }
+
+      function renderDashboard() {
+        const revenue = state.orders.filter((order) => order.status !== "cancelado").reduce((sum, order) => sum + Number(order.total || 0), 0);
+        const pending = state.orders.filter((order) => order.status === "pendente").length;
+        els.statsGrid.innerHTML = `
+          <article class="stat-card"><span>Produtos</span><strong>${state.products.length}</strong></article>
+          <article class="stat-card orange"><span>Pedidos</span><strong>${state.orders.length}</strong></article>
+          <article class="stat-card green"><span>Receita</span><strong>${money.format(revenue)}</strong></article>
+          <article class="stat-card yellow"><span>Pendentes</span><strong>${pending}</strong></article>
+        `;
+      }
+
+      function renderAdminProducts() {
+        els.adminProductsList.innerHTML = state.products.length
+          ? state.products.map((product) => `
+            <article class="admin-row-card">
+              <div class="admin-thumb">${product.image ? `<img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" />` : `<i data-lucide="package"></i>`}</div>
+              <div>
+                <h3>${escapeHTML(product.name)}</h3>
+                <p>${escapeHTML(product.description)}</p>
+                <div class="row-meta">
+                  <strong>${money.format(product.price)}</strong>
+                  ${hasDiscount(product) ? `<span>${discountLabel(product)} de desconto</span>` : `<span>Sem desconto</span>`}
+                  <span>Estoque: ${product.stock}</span>
+                  <span>${product.visible ? "Visível" : "Oculto"}</span>
+                  <span>${escapeHTML(getCategoryName(product.categoryId))}</span>
+                </div>
+              </div>
+              <div class="row-actions">
+                <button class="mini-action" type="button" data-edit-product="${escapeHTML(product.id)}" title="Editar produto e foto"><i data-lucide="pencil"></i> Editar</button>
+                <button class="mini-action" type="button" data-toggle-product="${escapeHTML(product.id)}" title="${product.visible ? "Ocultar" : "Mostrar"}"><i data-lucide="${product.visible ? "eye-off" : "eye"}"></i> ${product.visible ? "Ocultar" : "Mostrar"}</button>
+                <button class="mini-action danger" type="button" data-delete-product="${escapeHTML(product.id)}" title="Remover"><i data-lucide="trash-2"></i> Remover</button>
+              </div>
+            </article>
+          `).join("")
+          : `<div class="empty-state">Nenhum produto cadastrado.</div>`;
+      }
+
+      function renderAdminCategories() {
+        els.adminCategoriesList.innerHTML = state.categories.length
+          ? state.categories.map((category) => {
+            const count = state.products.filter((product) => product.categoryId === category.id).length;
+            return `
+              <article class="category-card">
+                <h3>${escapeHTML(category.name)}</h3>
+                <p>${escapeHTML(category.description || "Sem descrição.")}</p>
+                <div class="row-meta"><span>${count} produto(s)</span></div>
+                <div class="row-actions" style="margin-top: 12px">
+                  <button class="mini-action" type="button" data-edit-category="${escapeHTML(category.id)}" title="Editar"><i data-lucide="pencil"></i></button>
+                  <button class="mini-action danger" type="button" data-delete-category="${escapeHTML(category.id)}" title="Remover"><i data-lucide="trash-2"></i></button>
+                </div>
+              </article>
+            `;
+          }).join("")
+          : `<div class="empty-state">Nenhuma categoria cadastrada.</div>`;
+      }
+
+      function renderAdminOrders() {
+        const filter = els.orderFilter.value;
+        const orders = filter === "todos" ? state.orders : state.orders.filter((order) => order.status === filter);
+        els.adminOrdersList.innerHTML = orders.length
+          ? orders.map((order) => `
+            <article class="order-card">
+              <div class="order-top">
+                <div class="order-code">#${escapeHTML(order.id)} <span class="status-pill ${escapeHTML(order.status)}">${escapeHTML(order.status)}</span></div>
+                <div class="row-actions">
+                  <span style="color: var(--muted)">${escapeHTML(order.date)}</span>
+                  <button class="mini-action danger" type="button" data-delete-order="${escapeHTML(order.id)}" title="Remover pedido"><i data-lucide="trash-2"></i></button>
+                </div>
+              </div>
+              <div class="order-grid">
+                <div>
+                  <p><strong>${escapeHTML(order.customer.name)}</strong> · ${escapeHTML(order.customer.phone)}</p>
+                  <p>${escapeHTML(order.customer.delivery)} · ${escapeHTML(order.customer.address)}</p>
+                  <p>Frete: <strong>${escapeHTML(order.shipping?.service || "A combinar")}</strong>${order.shipping?.deadline ? ` · ${escapeHTML(order.shipping.deadline)}` : ""} · ${money.format(order.shipping?.price || 0)}</p>
+                  <p>Total: <strong>${money.format(order.total)}</strong></p>
+                  <div class="order-items">${order.items.map((item) => `${item.qty}x ${escapeHTML(item.name)} · ${money.format(item.subtotal)}`).join("<br />")}</div>
+                </div>
+                <div class="admin-form">
+                  <select class="admin-input" data-order-status="${escapeHTML(order.id)}">
+                    ${["pendente", "confirmado", "enviado", "entregue", "cancelado"].map((status) => `<option value="${status}" ${order.status === status ? "selected" : ""}>${status[0].toUpperCase() + status.slice(1)}</option>`).join("")}
+                  </select>
+                  <input class="admin-input" data-order-tracking="${escapeHTML(order.id)}" placeholder="Código de rastreio" value="${escapeHTML(order.tracking || "")}" />
+                </div>
+              </div>
+            </article>
+          `).join("")
+          : `<div class="empty-state">Nenhum pedido encontrado.</div>`;
+      }
+
+      function renderAdminSettings() {
+        els.storeSettingsForm.elements.whatsapp.value = state.settings.whatsapp || "";
+        els.storeSettingsForm.elements.originCep.value = maskCep(state.settings.originCep || defaultState.settings.originCep);
+        els.storeSettingsForm.elements.handlingFee.value = Number(state.settings.handlingFee ?? defaultState.settings.handlingFee).toFixed(2);
+        els.storeSettingsForm.elements.freeShippingFrom.value = Number(state.settings.freeShippingFrom || 0).toFixed(2);
+        els.adminCredentialsForm.elements.adminUser.value = state.settings.adminUser || "";
+        els.adminCredentialsForm.elements.adminPass.value = state.settings.adminPass || "";
+      }
+
+      function openProductForm(productId = "") {
+        const form = els.productForm;
+        form.reset();
+        form.elements.categoryId.innerHTML = state.categories.map((category) => `<option value="${escapeHTML(category.id)}">${escapeHTML(category.name)}</option>`).join("");
+        const product = state.products.find((item) => item.id === productId);
+        $("#productFormTitle").textContent = product ? "Editar produto" : "Novo produto";
+        if (product) {
+          form.elements.id.value = product.id;
+          form.elements.name.value = product.name;
+          form.elements.categoryId.value = product.categoryId;
+          form.elements.price.value = product.price;
+          form.elements.compareAt.value = product.compareAt || "";
+          form.elements.stock.value = product.stock;
+          form.elements.rating.value = product.rating || 4.8;
+          form.elements.image.value = product.image;
+          form.elements.description.value = product.description;
+          form.elements.promo.checked = !!product.promo;
+          form.elements.visible.checked = product.visible !== false;
+          form.elements.featured.checked = !!product.featured;
+          updateProductImagePreview(product.image);
+        } else {
+          form.elements.id.value = "";
+          form.elements.price.value = "";
+          form.elements.compareAt.value = "";
+          form.elements.stock.value = 1;
+          form.elements.rating.value = 4.8;
+          form.elements.image.value = "";
+          form.elements.promo.checked = true;
+          form.elements.visible.checked = true;
+          form.elements.featured.checked = false;
+          updateProductImagePreview("");
+        }
+        openModal(els.productModal);
+        form.elements.name.focus();
+      }
+
+      function openCategoryForm(categoryId = "") {
+        const form = els.categoryForm;
+        form.reset();
+        const category = state.categories.find((item) => item.id === categoryId);
+        $("#categoryFormTitle").textContent = category ? "Editar categoria" : "Nova categoria";
+        if (category) {
+          form.elements.id.value = category.id;
+          form.elements.name.value = category.name;
+          form.elements.description.value = category.description || "";
+        } else {
+          form.elements.id.value = "";
+        }
+        openModal(els.categoryModal);
+        form.elements.name.focus();
+      }
+
+      function wireEvents() {
+        $("#openCart").addEventListener("click", openCart);
+        $("#footerCart").addEventListener("click", openCart);
+        $("#closeCart").addEventListener("click", closeCart);
+        $("#checkoutBtn").addEventListener("click", openOrderModal);
+        $("#notifyBtn").addEventListener("click", () => showToast("Configure uma campanha de WhatsApp no próximo passo."));
+        $("#customerAction").addEventListener("click", openCustomerModal);
+        $("#footerCustomer").addEventListener("click", openCustomerModal);
+        $("#closeCustomerModal").addEventListener("click", () => closeModal(els.customerModal));
+        $("#goAdmin").addEventListener("click", openAdmin);
+        $("#footerAdmin").addEventListener("click", openAdmin);
+        $("#viewStoreBtn").addEventListener("click", closeAdmin);
+        $("#backToStoreLoginBtn").addEventListener("click", closeAdmin);
+        $("#backToStoreFromLogin").addEventListener("click", (event) => {
+          event.preventDefault();
+          closeAdmin();
+        });
+        $("#logoutAdmin").addEventListener("click", () => {
+          if (apiMode && adminToken()) {
+            fetch("/api/admin/logout", {
+              method: "POST",
+              headers: { authorization: `Bearer ${adminToken()}` },
+            }).catch(() => {});
+          }
+          setSession(false);
+          els.adminLogin.classList.remove("hidden");
+          els.adminApp.classList.add("hidden");
+          showToast("Você saiu do painel admin.");
+        });
+
+        document.addEventListener("click", (event) => {
+          const add = event.target.closest("[data-add]");
+          const inc = event.target.closest("[data-inc]");
+          const dec = event.target.closest("[data-dec]");
+          const view = event.target.closest("[data-view-product]");
+          if (add) {
+            addToCart(add.dataset.add);
+            return;
+          }
+          if (inc) {
+            addToCart(inc.dataset.inc);
+            return;
+          }
+          if (dec) {
+            const id = dec.dataset.dec;
+            const nextQty = (cart.get(id) || 0) - 1;
+            if (nextQty <= 0) cart.delete(id);
+            else cart.set(id, nextQty);
+            renderCart();
+            return;
+          }
+          if (view) openProductDetail(view.dataset.viewProduct);
+        });
+
+        [els.searchInput, els.categorySelect, els.sortSelect].forEach((field) => field.addEventListener("input", renderProducts));
+
+        els.adminLoginForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const user = els.adminLoginForm.elements.user.value.trim();
+          const password = els.adminLoginForm.elements.password.value;
+          if (apiMode) {
+            try {
+              const response = await fetch("/api/admin/login", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ user, password }),
+              });
+              if (!response.ok) throw new Error("Usuário ou senha inválidos.");
+              const result = await response.json();
+              state = normalizeLoadedState(result.store);
+              setSession(true, result.token);
+              els.adminLogin.classList.add("hidden");
+              els.adminApp.classList.remove("hidden");
+              renderAdmin();
+              showToast("Painel admin liberado pelo servidor.");
+            } catch {
+              showToast("Usuário ou senha inválidos.");
+            }
+            return;
+          }
+          const isCurrentLogin = user === state.settings.adminUser && password === state.settings.adminPass;
+          const isRecoveryLogin = user === defaultState.settings.adminUser && password === defaultState.settings.adminPass;
+          if (isCurrentLogin || isRecoveryLogin) {
+            if (isRecoveryLogin && !isCurrentLogin) {
+              state.settings.adminUser = defaultState.settings.adminUser;
+              state.settings.adminPass = defaultState.settings.adminPass;
+              saveState();
+            }
+            setSession(true);
+            els.adminLogin.classList.add("hidden");
+            els.adminApp.classList.remove("hidden");
+            renderAdmin();
+            showToast(isRecoveryLogin && !isCurrentLogin ? "Acesso recuperado. Senha resetada para 123456." : "Painel admin liberado.");
+          } else {
+            showToast("Usuário ou senha inválidos. Recuperação: admin / 123456.");
+          }
+        });
+
+        $$(".admin-nav-btn").forEach((button) => button.addEventListener("click", () => switchAdminTab(button.dataset.adminTab)));
+        $("#newProductBtn").addEventListener("click", () => openProductForm());
+        $("#dashboardNewProductBtn").addEventListener("click", () => {
+          switchAdminTab("products");
+          openProductForm();
+        });
+        $("#dashboardProductsBtn").addEventListener("click", () => switchAdminTab("products"));
+        $("#newCategoryBtn").addEventListener("click", () => openCategoryForm());
+        $("#closeProductModal").addEventListener("click", () => closeModal(els.productModal));
+        $("#closeProductDetail").addEventListener("click", () => closeModal(els.productDetailModal));
+        $("#closeCategoryModal").addEventListener("click", () => closeModal(els.categoryModal));
+        $("#closeOrder").addEventListener("click", () => closeModal(els.orderModal));
+        [els.productModal, els.productDetailModal, els.categoryModal, els.orderModal].forEach((modal) => {
+          modal.addEventListener("click", (event) => {
+            if (event.target === modal) closeModal(modal);
+          });
+        });
+        els.customerModal.addEventListener("click", (event) => {
+          if (event.target === els.customerModal) closeModal(els.customerModal);
+        });
+
+        [els.orderForm, els.customerProfileForm].forEach((form) => {
+          form.elements.cep?.addEventListener("input", () => {
+            if (form === els.orderForm && cleanCep(form.elements.cep.value).length < 8) resetShipping();
+            if (cleanCep(form.elements.cep.value).length === 8) applyCepToForm(form);
+          });
+          form.elements.cep?.addEventListener("blur", () => applyCepToForm(form, false));
+        });
+
+        els.orderForm.elements.delivery.addEventListener("change", () => updateShippingForOrder(null, false));
+        els.freightOptions.addEventListener("click", (event) => {
+          const option = event.target.closest("[data-shipping-service]");
+          if (!option) return;
+          selectedShippingQuote = currentShippingQuotes.find((quote) => quote.service === option.dataset.shippingService) || selectedShippingQuote;
+          renderShippingOptions();
+          renderOrderSummary();
+        });
+
+        els.customerLoginForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const action = event.submitter?.dataset.customerAction || "login";
+          const email = els.customerLoginForm.elements.email.value.trim().toLowerCase();
+          const password = els.customerLoginForm.elements.password.value;
+          if (!email || !password) {
+            showToast("Preencha e-mail e senha.");
+            return;
+          }
+
+          const existing = state.customers.find((customer) => customer.email === email);
+          if (action === "register") {
+            if (existing) {
+              showToast("Esse e-mail já tem cadastro. Use Entrar.");
+              return;
+            }
+            const customer = {
+              id: uid("cliente"),
+              name: email.split("@")[0],
+              email,
+              password,
+              phone: "",
+              address: { cep: "", street: "", number: "", neighborhood: "", city: "", stateUf: "", complement: "" },
+            };
+            state.customers.push(customer);
+            saveState();
+            setCustomerSession(email);
+            renderStore();
+            renderCustomerArea();
+            showToast("Conta criada. Complete seus dados em Minha conta.");
+            return;
+          }
+
+          if (!existing || existing.password !== password) {
+            showToast("E-mail ou senha inválidos.");
+            return;
+          }
+          setCustomerSession(email);
+          renderStore();
+          renderCustomerArea();
+          showToast("Cliente logado.");
+        });
+
+        els.customerProfileForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const form = els.customerProfileForm;
+          const oldEmail = getCustomerSession();
+          const email = form.elements.email.value.trim().toLowerCase();
+          const conflict = state.customers.some((customer) => customer.email === email && customer.email !== oldEmail);
+          if (conflict) {
+            showToast("Esse e-mail já está em uso.");
+            return;
+          }
+          const customer = currentCustomer();
+          if (!customer) return;
+          customer.name = form.elements.name.value.trim();
+          customer.email = email;
+          customer.phone = form.elements.phone.value.trim();
+          customer.password = form.elements.password.value;
+          customer.address = {
+            cep: form.elements.cep.value.trim(),
+            street: form.elements.street.value.trim(),
+            number: form.elements.number.value.trim(),
+            neighborhood: form.elements.neighborhood.value.trim(),
+            city: form.elements.city.value.trim(),
+            stateUf: form.elements.stateUf.value.trim(),
+            complement: form.elements.complement.value.trim(),
+          };
+          saveState();
+          setCustomerSession(email);
+          renderStore();
+          renderCustomerArea();
+          showToast("Dados do cliente salvos.");
+        });
+
+        $("#logoutCustomer").addEventListener("click", () => {
+          setCustomerSession("");
+          renderStore();
+          renderCustomerArea();
+          showToast("Você saiu da conta do cliente.");
+        });
+
+        els.productDetailBody.addEventListener("submit", (event) => {
+          const form = event.target.closest("#reviewForm");
+          if (!form) return;
+          event.preventDefault();
+          const product = state.products.find((item) => item.id === form.elements.productId.value);
+          const customer = currentCustomer();
+          if (!product || !customer) {
+            showToast("Entre como cliente para avaliar.");
+            return;
+          }
+          const comment = form.elements.comment.value.trim();
+          if (!comment) {
+            showToast("Escreva um comentário para enviar a avaliação.");
+            return;
+          }
+          const existing = state.reviews.find((review) => review.productId === product.id && review.customerEmail === customer.email);
+          const reviewData = {
+            id: existing?.id || uid("avaliacao"),
+            productId: product.id,
+            customerEmail: customer.email,
+            customerName: form.elements.name.value.trim() || customer.name || "Cliente",
+            rating: Number(form.elements.rating.value) || 5,
+            comment,
+            date: new Date().toISOString(),
+          };
+          if (existing) Object.assign(existing, reviewData);
+          else state.reviews.unshift(reviewData);
+          saveState();
+          renderStore();
+          openProductDetail(product.id);
+          showToast("Avaliação salva. Obrigado!");
+        });
+
+        els.productForm.elements.image.addEventListener("input", () => {
+          updateProductImagePreview(els.productForm.elements.image.value.trim());
+        });
+
+        els.productForm.elements.imageFile.addEventListener("change", async () => {
+          const file = els.productForm.elements.imageFile.files?.[0];
+          if (!file) return;
+          if (!file.type.startsWith("image/")) {
+            showToast("Escolha um arquivo de imagem.");
+            return;
+          }
+          try {
+            showToast("Preparando foto do produto...");
+            const imageData = await fileToCompressedImage(file);
+            let imageUrl = imageData;
+            if (apiMode && adminToken()) {
+              const response = await fetch("/api/upload", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                  authorization: `Bearer ${adminToken()}`,
+                },
+                body: JSON.stringify({ name: file.name, type: file.type, dataUrl: imageData }),
+              });
+              if (!response.ok) throw new Error("Falha no upload.");
+              imageUrl = (await response.json()).url;
+            }
+            els.productForm.elements.image.value = imageUrl;
+            updateProductImagePreview(imageUrl);
+            showToast("Foto carregada. Agora salve o produto.");
+          } catch (error) {
+            console.warn(error);
+            showToast("Não consegui carregar essa foto.");
+          }
+        });
+
+        els.adminProductsList.addEventListener("click", (event) => {
+          const edit = event.target.closest("[data-edit-product]");
+          const toggle = event.target.closest("[data-toggle-product]");
+          const remove = event.target.closest("[data-delete-product]");
+          if (edit) openProductForm(edit.dataset.editProduct);
+          if (toggle) {
+            const product = state.products.find((item) => item.id === toggle.dataset.toggleProduct);
+            if (!product) return;
+            product.visible = !product.visible;
+            saveState();
+            renderStore();
+            renderAdmin();
+          }
+          if (remove) {
+            const product = state.products.find((item) => item.id === remove.dataset.deleteProduct);
+            state.products = state.products.filter((item) => item.id !== remove.dataset.deleteProduct);
+            cart.delete(remove.dataset.deleteProduct);
+            saveState();
+            renderStore();
+            renderAdmin();
+            showToast(`${product?.name || "Produto"} removido.`);
+          }
+        });
+
+        els.adminCategoriesList.addEventListener("click", (event) => {
+          const edit = event.target.closest("[data-edit-category]");
+          const remove = event.target.closest("[data-delete-category]");
+          if (edit) openCategoryForm(edit.dataset.editCategory);
+          if (remove) {
+            const id = remove.dataset.deleteCategory;
+            if (state.products.some((product) => product.categoryId === id)) {
+              showToast("Não dá para remover categoria com produtos vinculados.");
+              return;
+            }
+            state.categories = state.categories.filter((category) => category.id !== id);
+            saveState();
+            renderStore();
+            renderAdmin();
+          }
+        });
+
+        els.adminOrdersList.addEventListener("input", (event) => {
+          const tracking = event.target.closest("[data-order-tracking]");
+          if (!tracking) return;
+          const order = state.orders.find((item) => item.id === tracking.dataset.orderTracking);
+          if (order) order.tracking = tracking.value;
+          saveState();
+          renderDashboard();
+        });
+
+        els.adminOrdersList.addEventListener("change", (event) => {
+          const status = event.target.closest("[data-order-status]");
+          if (!status) return;
+          const order = state.orders.find((item) => item.id === status.dataset.orderStatus);
+          if (order) order.status = status.value;
+          saveState();
+          renderDashboard();
+          renderAdminOrders();
+        });
+
+        els.adminOrdersList.addEventListener("click", (event) => {
+          const remove = event.target.closest("[data-delete-order]");
+          if (!remove) return;
+          state.orders = state.orders.filter((order) => order.id !== remove.dataset.deleteOrder);
+          saveState();
+          renderAdmin();
+          showToast("Pedido removido.");
+        });
+
+        els.orderFilter.addEventListener("input", renderAdminOrders);
+
+        els.productForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const form = els.productForm;
+          const image = form.elements.image.value.trim();
+          if (!image) {
+            showToast("Adicione uma foto por link ou envio de arquivo.");
+            return;
+          }
+          const id = form.elements.id.value || slugify(form.elements.name.value) || uid("produto");
+          const product = {
+            id,
+            name: form.elements.name.value.trim(),
+            categoryId: form.elements.categoryId.value,
+            price: Number(form.elements.price.value) || 0,
+            compareAt: Number(form.elements.compareAt.value) || Number(form.elements.price.value) || 0,
+            stock: Number(form.elements.stock.value) || 0,
+            rating: Number(form.elements.rating.value) || 4.8,
+            image,
+            description: form.elements.description.value.trim(),
+            promo: form.elements.promo.checked,
+            visible: form.elements.visible.checked,
+            featured: form.elements.featured.checked,
+          };
+          const existingIndex = state.products.findIndex((item) => item.id === id);
+          if (existingIndex >= 0) state.products[existingIndex] = product;
+          else state.products.unshift(product);
+          saveState();
+          closeModal(els.productModal);
+          renderStore();
+          renderAdmin();
+          showToast(existingIndex >= 0 ? "Produto atualizado." : "Produto cadastrado.");
+        });
+
+        els.categoryForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const form = els.categoryForm;
+          const id = form.elements.id.value || slugify(form.elements.name.value) || uid("categoria");
+          const category = {
+            id,
+            name: form.elements.name.value.trim(),
+            description: form.elements.description.value.trim(),
+          };
+          const existingIndex = state.categories.findIndex((item) => item.id === id);
+          if (existingIndex >= 0) state.categories[existingIndex] = category;
+          else state.categories.push(category);
+          saveState();
+          closeModal(els.categoryModal);
+          renderStore();
+          renderAdmin();
+          showToast("Categoria salva.");
+        });
+
+        els.storeSettingsForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const phone = cleanPhone(els.storeSettingsForm.elements.whatsapp.value);
+          if (phone && phone.length < 12) {
+            showToast("Informe o WhatsApp com DDI, DDD e número.");
+            return;
+          }
+          const origin = cleanCep(els.storeSettingsForm.elements.originCep.value);
+          if (origin.length !== 8) {
+            showToast("Informe o CEP de origem da loja com 8 números.");
+            return;
+          }
+          state.settings.whatsapp = phone;
+          state.settings.originCep = origin;
+          state.settings.handlingFee = Math.max(0, Number(els.storeSettingsForm.elements.handlingFee.value) || 0);
+          state.settings.freeShippingFrom = Math.max(0, Number(els.storeSettingsForm.elements.freeShippingFrom.value) || 0);
+          const originAddress = await lookupCep(origin);
+          if (originAddress?.city) {
+            state.settings.originCity = originAddress.city;
+            state.settings.originState = originAddress.stateUf || "SP";
+          } else {
+            state.settings.originCity = "Ribeirão Preto";
+            state.settings.originState = "SP";
+          }
+          saveState();
+          renderStore();
+          renderAdmin();
+          showToast("Dados da loja salvos.");
+        });
+
+        els.adminCredentialsForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const user = els.adminCredentialsForm.elements.adminUser.value.trim();
+          const pass = els.adminCredentialsForm.elements.adminPass.value;
+          if (!user || !pass) {
+            showToast("Preencha usuário e senha.");
+            return;
+          }
+          state.settings.adminUser = user;
+          state.settings.adminPass = pass;
+          saveState();
+          showToast("Acesso admin salvo.");
+        });
+
+        els.orderForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (els.orderForm.elements.delivery.value === "Entrega" && !selectedShippingQuote) {
+            await updateShippingForOrder(null, false);
+            if (!selectedShippingQuote) {
+              showToast("Calcule o frete pelo CEP antes de enviar.");
+              return;
+            }
+          }
+          const order = buildOrder(new FormData(els.orderForm));
+          const phone = cleanPhone(state.settings.whatsapp);
+          saveOrder(order);
+          closeModal(els.orderModal);
+          closeCart();
+          els.orderForm.reset();
+          resetShipping();
+          const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildWhatsAppMessage(order))}`;
+          window.open(url, "_blank", "noopener");
+          showToast("Pedido registrado e pronto no WhatsApp.");
+        });
+      }
+
+      async function bootstrap() {
+        await loadStateFromApi();
+        wireEvents();
+        renderStore();
+        if (location.hash === "#admin") openAdmin();
+      }
+
+      bootstrap();
+    </script>
+  </body>
+</html>

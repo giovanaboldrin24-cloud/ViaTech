@@ -1,0 +1,42 @@
+VIATECH - VERSAO COM SERVIDOR E BANCO CENTRAL
+
+Esta pasta e a primeira versao "loja real" do projeto.
+
+O que mudou:
+- Produtos, categorias, pedidos, clientes e avaliacoes ficam em data/store.json.
+- Fotos enviadas pelo admin ficam em uploads/.
+- O site conversa com o servidor por API.
+- O login admin e validado no servidor.
+- A senha inicial do admin continua:
+  usuario: admin
+  senha: 123456
+
+Como rodar localmente:
+1. Abra um terminal nesta pasta real-store.
+2. Rode:
+   node server.mjs
+3. Acesse:
+   http://127.0.0.1:8787
+
+Arquivos importantes:
+- server.mjs: servidor/API/banco/upload.
+- public/index.html: site da loja.
+- data/store.json: banco de dados em arquivo.
+- uploads/: fotos enviadas pelo painel admin.
+
+Para publicar online:
+- Precisa de uma hospedagem que rode Node.js e tenha armazenamento persistente.
+- Recomendacao simples: Render Web Service com Persistent Disk.
+- Comando de inicio:
+  npm start
+- Variavel importante:
+  VIATECH_DATA_DIR=/var/data
+- Disco persistente:
+  mount path: /var/data
+  tamanho inicial: 1 GB
+- O arquivo render.yaml ja deixa essa configuracao preparada.
+
+Observacao:
+Esta versao ja centraliza os dados em um servidor. Para uma operacao maior,
+o proximo nivel seria trocar o arquivo data/store.json por um banco gerenciado
+como PostgreSQL/Supabase/Firebase e configurar dominio, HTTPS e backups.

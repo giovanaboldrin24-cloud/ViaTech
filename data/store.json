@@ -1,0 +1,79 @@
+{
+  "settings": {
+    "whatsapp": "",
+    "adminUser": "admin",
+    "originCep": "14010000",
+    "originCity": "Ribeirão Preto",
+    "originState": "SP",
+    "handlingFee": 3.9,
+    "freeShippingFrom": 0
+  },
+  "categories": [
+    {
+      "id": "audio",
+      "name": "Áudio",
+      "description": "Fones, caixas de som e acessórios bluetooth."
+    },
+    {
+      "id": "wearables",
+      "name": "Wearable",
+      "description": "Relógios inteligentes e dispositivos conectados."
+    },
+    {
+      "id": "energia",
+      "name": "Energia",
+      "description": "Carregadores, cabos e power banks."
+    }
+  ],
+  "products": [
+    {
+      "id": "fone-bluetooth-pro-x",
+      "name": "Fone Bluetooth Pro X",
+      "categoryId": "audio",
+      "price": 249.9,
+      "compareAt": 329.9,
+      "stock": 8,
+      "rating": 4.9,
+      "promo": true,
+      "visible": true,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+      "description": "Cancelamento de ruído, áudio imersivo e bateria para longas jornadas."
+    },
+    {
+      "id": "smartwatch-pulse",
+      "name": "Smartwatch Pulse",
+      "categoryId": "wearables",
+      "price": 189.9,
+      "compareAt": 239.9,
+      "stock": 5,
+      "rating": 4.8,
+      "promo": true,
+      "visible": true,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+      "description": "Monitoramento diário, notificações rápidas e design minimalista."
+    },
+    {
+      "id": "power-bank-20k",
+      "name": "Power Bank 20K",
+      "categoryId": "energia",
+      "price": 129.9,
+      "compareAt": 159.9,
+      "stock": 7,
+      "rating": 4.7,
+      "promo": true,
+      "visible": true,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=900&q=85",
+      "description": "Carga rápida para celular, fone, tablet e acessórios durante o dia."
+    }
+  ],
+  "customers": [],
+  "reviews": [],
+  "orders": [],
+  "auth": {
+    "salt": "dfad35060bde65d8869399855c78c36f",
+    "hash": "adcef73af9cc47d8917a51921648fb6e6b962e519f2ad001ada39f890059c089114363e341a6b15484c5edd8d9a6ab0484c810c78ea35225c2546953ac5f10bb"
+  }
+}

@@ -1,13 +1,23 @@
 services:
   - type: web
-    name: viatech-real-store
+    name: rotina
     runtime: node
+    plan: starter
     buildCommand: npm install
     startCommand: npm start
+    healthCheckPath: /healthz
     envVars:
-      - key: VIATECH_DATA_DIR
+      - key: ROTINA_DATA_DIR
         value: /var/data
+      - key: APP_URL
+        sync: false
+      - key: ALLOWED_EMAIL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
     disk:
-      name: viatech-data
+      name: rotina-data
       mountPath: /var/data
       sizeGB: 1
